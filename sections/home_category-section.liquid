@@ -76,14 +76,15 @@
 <script>
   new Splide('#categorySlider', {
     type: "slide",
-    pagination: false,
+    pagination: true,
     perPage: 2,
+    loop: true,
     perMove: 1,
-    arrows: true,
-    mediaQuery: "min",
+    arrows: false,
+   
     breakpoints: {
       500: {
-        perPage: 3,
+        perPage: 2,
         perMove: 1
       },
       640: {
@@ -99,10 +100,12 @@
         perMove: 1
       },
       1280: {
-        perPage: 9,
+        perPage: 6,
         perMove: 1
       }
 
-    }
+    },
+    autoplay: true, // Add this line to enable autoplay
+    interval: 3000,
   }).mount();
 </script>
