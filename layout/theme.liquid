@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{{ page_title }}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="{{ page_description | escape }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    {{ content_for_header }}
+    <!-- Header hook for plugins -->
+    {{ 'application.css' | asset_url | stylesheet_tag }}
+    {{ 'customStyle.css' | asset_url | stylesheet_tag }}
+    {{ 'application.js' | asset_url | script_tag }}
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    {{ "https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/css/splide.min.css" | stylesheet_tag }}
+    {{ "https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.3/dist/js/splide.min.js" | script_tag }}
+
+    <style>
+      body {
+        font-family: 'Raleway', sans-serif;
+
+      }
+    </style>
+  <!--DOOFINDER-SHOPIFY--> {% if content_for_header contains 'doofinder-installed.js' %} {% render 'doofinder-script-tag' %} {% endif %} <!--/DOOFINDER-SHOPIFY--></head>
+  <body>
+    <div id="root">
+      {% section 'header' %}
+      <main role="main" class="pt-[50px] md:pt-[80px]">
+        {{ content_for_layout }}
+      </main>
+      {% section 'footer' %}
+    </div>
+
+    <script
+      src="//foursixty.com/media/scripts/fs.embed.v2.js"
+      data-feed-id="yourfoursixtyid"
+      data-money-format="₹<%= amount %>"
+      data-product-images="false"></script>
+  </body>
+</html>

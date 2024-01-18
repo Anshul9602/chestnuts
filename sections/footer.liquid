@@ -1,0 +1,233 @@
+{% style %}
+  .footer {
+    padding-top: 20px;
+    padding-bottom: 10%;
+    background-color: gray;
+  }
+
+  .fc-info input::placeholder {
+    color: black;
+    font-size: 14px;
+  }
+
+  .f-desc {
+    transition: all 300ms ease-in-out;
+    animation: descAnimate 300ms ease-in-out forwards;
+  }
+
+  .rotate {
+    transform: rotateX(180deg);
+  }
+
+  @keyframes descAnimate {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .footer .desk {
+      display: flex;
+    }
+
+    .mob {
+      display: none;
+    }
+  }
+
+  .footer {
+    background: #FEFEF3;
+    padding-top: 50px;
+    padding-bottom: 6%;
+    background-size: contain;
+    background-position: bottom;
+    position: relative;
+  }
+
+  .footer-bg {
+    padding-bottom: 15%;
+  }
+{% endstyle %}
+
+{% if section.settings.menu.links == blank %}
+  {% assign footer_menu_linklist = linklists[section.settings.menu].links %}
+{% else %}
+  {% assign footer_menu_linklist = section.settings.menu.links %}
+{% endif %}
+
+<footer class="footer px-5">
+  <div class="container ">
+    <div class="desk hidden flex-row justify-between">
+      {% for link in footer_menu_linklist %}
+        {% if link.links != blank %}
+          <div class="c flex flex-col gap-y-4 flex-1">
+            <div class="fc-heading">
+              <h6 class="uppercase tracking-[3px] text-[#4b4b4b] font-Mukta">{{ link.title }}</h6>
+            </div>
+            <ul class="fc-list flex flex-col items-start gap-y-1 p-0" >
+              {% for child_link in link.links %}
+                <li class="text-[14px] hover:text-primary">
+                  <a href="{{ child_link.url }}" class="font-Mukta">{{ child_link.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      <div class="c5 flex flex-col gap-y-4 flex-[1.1]">
+        <div class="fc-heading">
+          <h6 class="uppercase tracking-[3px] text-[#4b4b4b] font-Mukta">Connect With Us</h6>
+        </div>
+        <div class="fc-info flex flex-col gap-y-3">
+          <div class="flex flex-row gap-x-2">
+            <span>
+              <i class='bx bx-envelope'></i>
+            </span>
+            <span class="text-[14px]">abc@gmail.com</span>
+          </div>
+          <div class="flex flex-row gap-x-2">
+            <span>
+              <i class='bx bx-phone'></i>
+            </span>
+            <span class="text-[14px]">+91-1111111111</span>
+          </div>
+          <div class="flex flex-row gap-x-2">
+            <span>
+              <i class='bx bx-location-plus'></i>
+            </span>
+            <span class="text-[14px]">C-227, Nirman Nagar, 302019 Jaipur Rajasthan, India</span>
+          </div>
+          <div class="icons flex flex-row items-center gap-x-4">
+            <a href="https://www.facebook.com/JaipurPaisleyClothing/">
+              <i class='bx bxl-facebook-circle text-[28px]' style="color:#464646;"></i>
+            </a>
+            <a href="https://www.instagram.com/jaipurpaisley/">
+              <i class='bx bxl-instagram text-[28px]' style="color:#464646;"></i>
+
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mob block">
+      <div class="fcategory-wrapper">
+        {% for link in footer_menu_linklist %}
+          {% if link.links != blank %}
+            <div class="fcategory border-b-[1px]">
+              <button type="button" class="fdescBtn flex items-center p-[15px] text-[14px] tracking-widest uppercase w-full">
+                <span class="flex-1 font-Mukta">{{ link.title }}</span>
+                <i class='bx bx-chevron-down text-[24px]'></i>
+              </button>
+
+              <div class="f-desc px-6 py-4 hidden">
+                <ul class="fc-list flex flex-col items-center gap-y-1">
+                  {% for child_link in link.links %}
+                    <li class="text-[14px]">
+                      <a href="{{ child_link.url }}" class="text-black/75 font-Mukta">{{ child_link.title }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+
+
+        <div class="fcategory fcategory-5 border-b-[1px]">
+          <button type="button" class="fdescBtn flex items-center p-[15px] text-[14px] tracking-widest uppercase w-full">
+            <span class="flex-1 font-Mukta">CONNECT WITH US</span>
+            <i class='bx bx-chevron-down text-[24px]'></i>
+          </button>
+          <div class="f-desc px-6 py-4 hidden">
+            <div class="flex flex-col items-center gap-y-3">
+              <div class="flex flex-row gap-x-2">
+                <span>
+                  <i class='bx bx-envelope'></i>
+                </span>
+                <span class="text-[14px]">Jaipurpaisley2018@gmail.com</span>
+              </div>
+              <div class="flex flex-row gap-x-2">
+                <span>
+                  <i class='bx bx-phone'></i>
+                </span>
+                <span class="text-[14px]">+91-9352280581</span>
+              </div>
+              <div class="flex flex-row gap-x-2">
+                <span>
+                  <i class='bx bx-location-plus'></i>
+                </span>
+                <span class="text-[14px]">C-227, Nirman Nagar, 302019 Jaipur Rajasthan, India</span>
+              </div>
+              <div class="icons flex flex-row items-center gap-x-4">
+                <a href="https://www.facebook.com/JaipurPaisleyClothing/">
+                  <i class='bx bxl-facebook-circle text-[28px] text-white'></i>
+                </a>
+                <a href="https://www.instagram.com/jaipurpaisley/">
+                  <i class='bx bxl-instagram text-[28px] text-white'></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "menu",
+        "default": "footer",
+        "label": "Footer Navigation Menu"
+      }
+    ]
+  }
+{% endschema %}
+
+<script src="https://code.jquery.com/jquery-3.6.4.slim.min.js" integrity="sha256-a2yjHM4jnF9f54xUQakjZGaqYs/V1CYvWpoqZzC2/Bw=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+<script>
+
+// Sticky menu
+	var $window = $(window);
+	$window.on('scroll', function () {
+     
+		var scroll = $window.scrollTop();
+		if (scroll < 300) {
+			$(".sticky").removeClass("fixed");
+		} else {
+			$(".sticky").addClass("fixed");
+		}
+	});
+
+
+
+  
+
+  const descriptionBtns = document.querySelectorAll(".fdescBtn");
+  const desctiptions = document.querySelectorAll(".f-desc");
+  const descriptionBtnIcon = document.querySelectorAll(".fdescBtn i");
+
+  descriptionBtns.forEach((descriptionBtn, index) => {
+    descriptionBtn.addEventListener("click", () => {
+      if (desctiptions[index].classList.contains("hidden")) {
+        desctiptions[index].classList.remove("hidden");
+        descriptionBtnIcon.classList.add("rotate");
+
+      } else if (! desctiptions[index].classList.contains("block")) {
+
+        desctiptions[index].classList.add("hidden");
+      }
+    })
+  })
+</script>

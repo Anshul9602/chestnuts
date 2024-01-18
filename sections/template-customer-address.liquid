@@ -1,0 +1,498 @@
+<div class="my-5 py-5">
+  <div class="container flex flex-col items-center">
+    <div class="address-header text-center flex flex-col gap-y-3 mb-7">
+      <h1 class="font-Mukta uppercase tracking-wide text-[32px]">Addresses</h1>
+      <button class="addAddressBtn border px-3 py-2 border-[#c1c1c1] rounded-sm hover:border-primary hover:text-primary transition-all font-Mukta">Add Address</button>
+    </div>
+
+    <div class="addNewAddressContainer w-full max-w-[1020px] hidden">
+      {% form 'customer_address', customer.new_address %}
+        {% if form.errors %}
+          <div class="relative border border-red-400 bg-red-100 text-red-700 px-4 py-3" role="alert">
+            <strong class="font-bold font-Mukta">Error!</strong>
+            <p class="block sm:inline font-Mukta">{{ form.errors | default_errors }}</p>
+          </div>
+        {% endif %}
+        <!-- form content -->
+        <div class="newAddressWrapper flex flex-col gap-y-3">
+          <h2 class="text-[calc(30px*0.95)] font-Mukta mb-3">Add Address</h2>
+
+          <div class="addressNameGrid flex flex-col md:flex-row flex-wrap gap-y-2 gap-x-3">
+            <div class="FirstName flex-1 flex flex-col gap-y-1">
+              <label for="AddressFirstNameNew" class="text-[13px] uppercase font-Mukta">First Name</label>
+              <input
+                type="text"
+                id="AddressFirstNameNew"
+                class="input-full bg-transparent border border-[#c1c1c1] px-3 py-2"
+                name="address[first_name]"
+                value=""
+                autocapitalize="words">
+            </div>
+
+            <div class="LastName flex-1 flex flex-col gap-y-1">
+              <label for="AddressLastNameNew" class="text-[13px] uppercase font-Mukta">Last Name</label>
+              <input
+                type="text"
+                id="AddressLastNameNew"
+                class="input-full bg-transparent border border-[#c1c1c1] px-3 py-2"
+                name="address[last_name]"
+                value=""
+                autocapitalize="words">
+            </div>
+          </div>
+
+          <div class="addressCompany flex-1 flex flex-col gap-y-1">
+            <label for="AddressCompany" class="text-[13px] uppercase font-Mukta">Company</label>
+            <input
+              type="text"
+              id="AddressCompany"
+              class="input-full bg-transparent border border-[#c1c1c1] px-3 py-2"
+              name="address[company]"
+              value=""
+              autocapitalize="words">
+          </div>
+
+          <div class="address_add1 flex-1 flex flex-col gap-y-1">
+            <label for="Address_add1" class="text-[13px] uppercase font-Mukta">Address 1</label>
+            <input
+              type="text"
+              id="Address_add1"
+              class="input-full bg-transparent border border-[#c1c1c1] px-3 py-2"
+              name="address[address1]"
+              value=""
+              autocapitalize="words">
+          </div>
+
+          <div class="address_add2 flex-1 flex flex-col gap-y-1">
+            <label for="Address_add2" class="text-[13px] uppercase font-Mukta">Address 2</label>
+            <input
+              type="text"
+              id="Address_add2"
+              class="input-full bg-transparent border border-[#c1c1c1] px-3 py-2"
+              name="address[address2]"
+              value=""
+              autocapitalize="words">
+          </div>
+
+          <div class="city-country flex flex-col md:flex-row flex-wrap gap-y-2 gap-x-3">
+            <div class="addressCity flex-1 flex flex-col gap-y-1">
+              <label for="AddressCity" class="text-[13px] uppercase font-Mukta">City</label>
+              <input
+                type="text"
+                id="AddressCity"
+                name="address[city]"
+                value="{{ form.city }}"
+                class="input-full bg-transparent border border-[#c1c1c1] px-3 py-2">
+
+            </div>
+
+            <div class="addressCountry flex-1 flex flex-col gap-y-1">
+              <label for="AddressCountry" class="text-[13px] uppercase font-Mukta">Country</label>
+              <select
+                id="AddressCountry"
+                name="address[country]"
+                value="{{ form.country }}"
+                class="input-full bg-transparent border border-[#c1c1c1] px-3 py-2"
+                data-country-selector
+                data-default="{{ form.country }}">
+                {{ all_country_option_tags }}
+              </select>
+            </div>
+          </div>
+
+          <div class="addressProvince flex-1 flex flex-col gap-y-1">
+            <label for="AddressProvince" class="text-[13px] uppercase font-Mukta">Province</label>
+            <select
+              id="AddressProvince"
+              name="address[province]"
+              class="input-full bg-transparent border border-[#c1c1c1] px-3 py-2"
+              data-default="{{ form.province }}"></select>
+          </div>
+
+          <div class="addressZipPhone flex flex-col md:flex-row flex-wrap gap-y-2 gap-x-3">
+            <div class="ZipCode flex-1 flex flex-col gap-y-1">
+              <label for="AddressZipCode" class="text-[13px] uppercase font-Mukta">POSTAL/ZIP CODE</label>
+              <input
+                type="text"
+                id="AddressZipCode"
+                class="input-full bg-transparent border border-[#c1c1c1] px-3 py-2"
+                name="address[zip]"
+                value="{{ form.zip }}">
+            </div>
+
+            <div class="PhoneNumber flex-1 flex flex-col gap-y-1">
+              <label for="AddressPhone" class="text-[13px] uppercase font-Mukta">Phone</label>
+              <input
+                type="tel"
+                id="AddressPhone"
+                class="input-full bg-transparent border border-[#c1c1c1] px-3 py-2"
+                name="address[phone]"
+                value="{{ form.phone }}">
+            </div>
+          </div>
+
+          <p>
+            <input
+              type="checkbox"
+              id="address_default_address_new"
+              class="bg-white"
+              name="address[default]"
+              value="1">
+            <label for="address_default_address_new" class="inline">Set as default address</label>
+          </p>
+
+          <div class="flex flex-row items-center gap-2">
+            <button type="submit" class="border px-3 py-2 border-primary rounded-sm bg-primary text-white hover:bg-white hover:text-primary transition-all font-Mukta">Add Address</button>
+            <button type="reset" class="resetAddressBtn border px-3 py-2 border-[#c1c1c1] rounded-sm hover:border-primary hover:text-primary transition-all font-Mukta">Cancel</button>
+          </div>
+        </div>
+      {% endform %}
+    </div>
+
+    <div class="addressesContainer w-full">
+      <div class="flex flex-row gap-5 flex-wrap">
+        {% paginate customer.addresses by 5 %}
+          {% for address in customer.addresses %}
+            <div>
+              <div class="relative shadow-md px-10 p-5 flex flex-col gap-5 rounded-md border border-[#c1c1c1] basis-[300px]">
+                {% if address == customer.default_address %}
+                  <span class="text-[12px] text-primary">Default</span>
+                {% endif %}
+                <div class="">
+                  {{ address | format_address }}
+                </div>
+
+                <div class="flex flex-row items-center gap-2">
+                  <button type="button" class="editAddButton border px-3 py-2 border-primary rounded-sm bg-primary text-white hover:bg-white hover:text-primary transition-all font-Mukta">Edit</button>
+                  <form
+                    class="address-delete-form"
+                    method="post"
+                    action="/account/addresses/{{ address.id }}">
+                    <input
+                      type="hidden"
+                      name="_method"
+                      value="delete">
+                    <button type="submit" class="resetAddressBtn border px-3 py-2 border-[#c1c1c1] rounded-sm hover:border-primary hover:text-primary transition-all font-Mukta">Delete</button>
+                  </form>
+
+                </div>
+              </div>
+
+              <div class="editAddressModal fixed left-0 top-0 w-full h-full z-10 bg-[#000]/25 p-10 overflow-y-auto hidden">
+                <div class="max-w-[850px] mx-auto bg-white p-5 rounded-md">
+                  <div class="container flex flex-col items-center">
+                    <div class="EditExistingAddressContainer w-full overflow-y-auto">
+                      {% form 'customer_address', address %}
+                        {% if form.errors %}
+                          <div class="relative border border-red-400 bg-red-100 text-red-700 px-4 py-3" role="alert">
+                            <strong class="font-bold font-Mukta">Error!</strong>
+                            <p class="block sm:inline font-Mukta">{{ form.errors | default_errors }}</p>
+                          </div>
+                        {% endif %}
+                        <!-- form content -->
+                        <div class="newAddressWrapper flex flex-col gap-y-3">
+                          <h2 class="text-[calc(30px*0.95)] font-Mukta mb-3">Edit Address</h2>
+
+                          <div class="addressNameGrid flex flex-col md:flex-row flex-wrap gap-y-2 gap-x-3">
+                            <div class="FirstName flex-1 flex flex-col gap-y-1">
+                              <label for="AddressFirstNameNew" class="text-[13px] uppercase font-Mukta">First Name</label>
+                              <input
+                                type="text"
+                                id="AddressFirstNameNew"
+                                class="input-full bg-transparent border border-[#c1c1c1] px-3 py-2"
+                                name="address[first_name]"
+                                value=""
+                                autocapitalize="words">
+                            </div>
+
+                            <div class="LastName flex-1 flex flex-col gap-y-1">
+                              <label for="AddressLastNameNew" class="text-[13px] uppercase font-Mukta">Last Name</label>
+                              <input
+                                type="text"
+                                id="AddressLastNameNew"
+                                class="input-full bg-transparent border border-[#c1c1c1] px-3 py-2"
+                                name="address[last_name]"
+                                value=""
+                                autocapitalize="words">
+                            </div>
+                          </div>
+
+                          <div class="addressCompany flex-1 flex flex-col gap-y-1">
+                            <label for="AddressCompany" class="text-[13px] uppercase font-Mukta">Company</label>
+                            <input
+                              type="text"
+                              id="AddressCompany"
+                              class="input-full bg-transparent border border-[#c1c1c1] px-3 py-2"
+                              name="address[company]"
+                              value=""
+                              autocapitalize="words">
+                          </div>
+
+                          <div class="address_add1 flex-1 flex flex-col gap-y-1">
+                            <label for="Address_add1" class="text-[13px] uppercase font-Mukta">Address 1</label>
+                            <input
+                              type="text"
+                              id="Address_add1"
+                              class="input-full bg-transparent border border-[#c1c1c1] px-3 py-2"
+                              name="address[address1]"
+                              value=""
+                              autocapitalize="words">
+                          </div>
+
+                          <div class="address_add2 flex-1 flex flex-col gap-y-1">
+                            <label for="Address_add2" class="text-[13px] uppercase font-Mukta">Address 2</label>
+                            <input
+                              type="text"
+                              id="Address_add2"
+                              class="input-full bg-transparent border border-[#c1c1c1] px-3 py-2"
+                              name="address[address2]"
+                              value=""
+                              autocapitalize="words">
+                          </div>
+
+                          <div class="city-country flex flex-col md:flex-row flex-wrap gap-y-2 gap-x-3">
+                            <div class="addressCity flex-1 flex flex-col gap-y-1">
+                              <label for="AddressCity" class="text-[13px] uppercase font-Mukta">City</label>
+                              <input
+                                type="text"
+                                id="AddressCity"
+                                name="address[city]"
+                                value="{{ form.city }}"
+                                class="input-full bg-transparent border border-[#c1c1c1] px-3 py-2">
+
+                            </div>
+
+                            <div class="addressCountry flex-1 flex flex-col gap-y-1">
+                              <label for="AddressCountry" class="text-[13px] uppercase font-Mukta">Country</label>
+                              <select
+                                id="AddressCountry"
+                                name="address[country]"
+                                value="{{ form.country }}"
+                                class="input-full bg-transparent border border-[#c1c1c1] pl-3 py-2"
+                                data-country-selector
+                                data-default="{{ form.country }}">
+                                {{ all_country_option_tags }}
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="addressProvince flex-1 flex flex-col gap-y-1">
+                            <label for="AddressProvince" class="text-[13px] uppercase font-Mukta">Province</label>
+                            <select
+                              id="AddressProvince"
+                              name="address[province]"
+                              class="input-full bg-transparent border border-[#c1c1c1] px-3 py-2"
+                              data-default="{{ form.province }}"></select>
+                          </div>
+
+                          <div class="addressZipPhone flex flex-col md:flex-row flex-wrap gap-y-2 gap-x-3">
+                            <div class="ZipCode flex-1 flex flex-col gap-y-1">
+                              <label for="AddressZipCode" class="text-[13px] uppercase font-Mukta">POSTAL/ZIP CODE</label>
+                              <input
+                                type="text"
+                                id="AddressZipCode"
+                                class="input-full bg-transparent border border-[#c1c1c1] px-3 py-2"
+                                name="address[zip]"
+                                value="{{ form.zip }}">
+                            </div>
+
+                            <div class="PhoneNumber flex-1 flex flex-col gap-y-1">
+                              <label for="AddressPhone" class="text-[13px] uppercase font-Mukta">Phone</label>
+                              <input
+                                type="tel"
+                                id="AddressPhone"
+                                class="input-full bg-transparent border border-[#c1c1c1] px-3 py-2"
+                                name="address[phone]"
+                                value="{{ form.phone }}">
+                            </div>
+                          </div>
+
+                          <p>
+                            <input
+                              type="checkbox"
+                              id="address_default_address_new"
+                              class="bg-white"
+                              name="address[default]"
+                              value="1">
+                            <label for="address_default_address_new" class="inline">Set as default address</label>
+                          </p>
+
+                          <div class="flex flex-row items-center gap-2">
+                            <button type="submit" class="border px-3 py-2 border-primary rounded-sm bg-primary text-white hover:bg-white hover:text-primary transition-all font-Mukta">Update Address</button>
+                            <button type="reset" class="cancelEditAddressBtn border px-3 py-2 border-[#c1c1c1] rounded-sm hover:border-primary hover:text-primary transition-all font-Mukta">Cancel</button>
+                          </div>
+                        </div>
+                      {% endform %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        {% endpaginate %}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<script>
+  const editAddressModals = document.querySelectorAll(".editAddressModal");
+  const editAddButtons = document.querySelectorAll(".editAddButton");
+  const cancelEditAddressBtns = document.querySelectorAll(".cancelEditAddressBtn");
+
+  editAddButtons.forEach((editBtn, index) => {
+    editBtn.addEventListener("click", () => {
+      if (editAddressModals[index].classList.contains('hidden')) {
+        editAddressModals[index].classList.remove("hidden");
+        const editcustomerAddress = new customerAddress();
+      }
+    })
+  });
+
+  cancelEditAddressBtns.forEach((cancelBtn, index) => {
+    cancelBtn.addEventListener("click", () => {
+      if (! editAddressModals[index].classList.contains("hidden")) {
+        editAddressModals[index].classList.add("hidden");
+      }
+    })
+  });
+</script>
+
+<script>
+  class customerAddress {
+    constructor() {
+      this.initCustomerAddress();
+      this.customerAddressesSelector();
+    }
+
+    getSelectedCountry(select) {
+      let option,
+        selectedOption;
+      for (let index = 0; index < select.options.length; index++) {
+        option = select.options[index];
+
+        if (option.value === select.getAttribute('value')) {
+          selectedOption = option;
+          selectedOption.settAttribute("selected", "selected");
+          break;
+        }
+      }
+
+      return selectedOption;
+    }
+
+    initCustomerAddress() {
+      const allAddressesSelector = document.querySelectorAll("select[data-country-selector]");
+      if (allAddressesSelector.length < 1) 
+        return;
+      
+
+
+
+// console.log(allAddressesSelector);
+      allAddressesSelector.forEach(select => {
+        let selectedCountry = this.getSelectedCountry(select);
+        if (! selectedCountry) 
+          return;
+        
+
+
+
+        let provinces = selectedCountry.dataset.provinces;
+        let arrayOfProvince = JSON.parse(provinces);
+
+        let provinceSelector = document.querySelector("#AddressProvince");
+
+        if (arrayOfProvince.length < 1) {
+          provinceSelector.setAttribute("disabled", "disabled");
+        } else {
+          provinceSelector.removeAttribute("disabled");
+        } provinceSelector.innerHTML = '';
+        let options = '';
+
+        for (let index = 0; index < arrayOfProvince.length; index++) {
+          if (arrayOfProvince[index][0] === provinceSelector.getAttribute("value")) {
+            options = `<option value='${
+              arrayOfProvince[index][0]
+            }' selected>${
+              arrayOfProvince[index[0]]
+            }</option>`;
+          } else {
+
+            options = `<option value='${
+              arrayOfProvince[index][0]
+            }'>${
+              arrayOfProvince[index[0]]
+            }</option>`;
+          }
+
+        }
+
+        provinceSelector.innerHTML = options;
+      })
+    }
+
+
+
+    customerAddressesSelector() {
+      const addressesSelector = document.querySelectorAll("select[data-country-selector]");
+      if (addressesSelector.length < 1) 
+        return;
+      
+
+
+
+      addressesSelector.forEach(select => {
+        select.addEventListener("change", function(e) {
+          let provinces = this.options[this.selectedIndex].dataset.provinces;
+
+          const arrayOfProvince = JSON.parse(provinces);
+
+          const provinceSelector = document.querySelector("#AddressProvince");
+
+          if (arrayOfProvince.length < 1) {
+            provinceSelector.setAttribute("disabled", 'disabled');
+          } else {
+            provinceSelector.removeAttribute('disabled');
+          } provinceSelector.innerHTML = '';
+          let options = '';
+          for (let index = 0; index < arrayOfProvince.length; index++) {
+            options += `<option value='${
+              arrayOfProvince[index][0]
+            }'>${
+              arrayOfProvince[index][0]
+            }</option>`;
+          }
+
+          provinceSelector.innerHTML = options;
+        })
+      })
+    }
+  }
+
+  const acustomerAddress = new customerAddress();
+</script>
+
+<script>
+  const addAddressBtn = document.querySelector(".addAddressBtn");
+  const resetAddressBtn = document.querySelector(".resetAddressBtn");
+
+  const addNewAddressContainer = document.querySelector(".addNewAddressContainer");
+
+  addAddressBtn.addEventListener("click", () => {
+    if (addNewAddressContainer.classList.contains("hidden")) {
+      addNewAddressContainer.classList.remove("hidden");
+    } else {
+      addNewAddressContainer.classList.add("hidden");
+    }
+  });
+
+  document.querySelector(".resetAddressBtn").addEventListener("click", () => {
+    if (! addNewAddressContainer.classList.contains('hidden')) {
+      addNewAddressContainer.classList.add('hidden');
+    }
+  });
+</script>

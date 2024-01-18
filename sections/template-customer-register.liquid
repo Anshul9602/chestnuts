@@ -1,0 +1,87 @@
+<div class="my-5 py-5">
+  <div class="container flex flex-col items-center">
+    <div class="login-title text-center">
+      <h1 class="uppercase text-[26px] font-Mukta">Create Account</h1>
+    </div>
+    <div class="form-container my-5 flex flex-col gap-y-5">
+      <div class="login-form min-w-[280px] md:min-w-[448px] md:max-w-md w-full">
+        {% form 'create_customer' %}
+          {% if form.errors %}
+            <div class="relative border border-red-400 bg-red-100 text-red-700 px-4 py-3" role="alert">
+              <strong class="font-bold font-Mukta">Error!</strong>
+              <p class="block sm:inline font-Mukta">{{ form.errors | default_errors }}</p>
+            </div>
+          {% endif %}
+          <div class="flex flex-col gap-y-8 w-full">
+            <div class="first_name w-full flex flex-col gap-y-2">
+              <div class="fn_label w-full">
+                <label for="first_name" class="uppercase tracking-[2px] text-[13px] font-Mukta">First Name</label>
+              </div>
+              <div class="fn_input w-full">
+                <input
+                  type="text"
+                  id="first_name"
+                  autocomplete="given-name"
+                  class="w-full bg-transparent border border-[#c1c1c1] px-3 py-2 text-[18px] font-Mukta"
+                  name="customer[first_name]">
+              </div>
+            </div>
+
+            <div class="last_name w-full flex flex-col gap-y-2">
+              <div class="ln_label w-full">
+                <label for="last_name" class="uppercase tracking-[2px] text-[13px] font-Mukta">Last Name</label>
+              </div>
+              <div class="ln_input w-full">
+                <input
+                  type="text"
+                  id="last_name"
+                  autocomplete="family-name"
+                  class="w-full bg-transparent border border-[#c1c1c1] px-3 py-2 text-[18px] font-Mukta"
+                  name="customer[last_name]">
+              </div>
+            </div>
+
+            <div class="r-email_input w-full flex flex-col gap-y-2">
+              <div class="r-email_label w-full">
+                <label for="email_address" class="uppercase tracking-[2px] text-[13px] font-Mukta">Email</label>
+              </div>
+              <div class="r-email_input w-full">
+                <input
+                  id="email_address"
+                  type="email"
+                  autocomplete="email"
+                  class="w-full bg-transparent border border-[#c1c1c1] px-3 py-2 text-[18px] font-Mukta"
+                  name="customer[email]">
+              </div>
+            </div>
+
+            <div class="password_input w-full flex flex-col gap-y-2">
+              <div class="password_label w-full flex items-center justify-between">
+                <label for="password" class="uppercase tracking-[2px] text-[13px] font-Mukta">Password</label>
+              </div>
+              <div class="password_input w-full">
+                <input
+                  id="password"
+                  type="password"
+                  autocomplete="off"
+                  class="w-full bg-transparent border border-[#c1c1c1] px-3 py-2 text-[18px]"
+                  name="customer[password]">
+              </div>
+            </div>
+
+
+            <div class="login_btn">
+              <button type="submit" class="w-full py-3 text-white bg-primary uppercase text-[14px] rounded-sm tracking-[2px] hover:text-primary hover:bg-white border-2 border-primary transition-all font-Mukta">Register</button>
+            </div>
+
+            <div class="register flex justify-center items-center">
+              <span class="font-Mukta">Already have an account?</span>
+              <a href="{{ routes.account_login_url }}" class="underline text-primary font-Mukta">
+                &nbsp;Login</a>
+            </div>
+          </div>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</div>

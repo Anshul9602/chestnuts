@@ -1,0 +1,134 @@
+<div class="accountPage my-5">
+  <div class="container py-5">
+    <div class="account_title text-center flex flex-col gap-y-2 mb-7">
+      <h1 class="font-Mukta text-[26px] uppercase">My Account</h1>
+      <div class="logout_btn flex justify-center items-center">
+        <a href="{{ routes.account_logout_url }}" class="border px-3 py-1 border-primary rounded-sm bg-primary text-white hover:bg-white hover:text-primary transition-all font-Mukta">Logout</a>
+      </div>
+    </div>
+
+    <div class="p-3">
+      <div class="flex flex-col flex-wrap gap-y-10">
+        <div class="accInfo1 flex flex-row flex-wrap justify-evenly gap-3">
+          <a href="#" class="w-[220px] orderHistory shadow-lg flex flex-col gap-y-2 border-2 border-primary p-5 items-center rounded-md">
+            <div class="">
+              <span class="orderHistory-icon">
+                {% render 'icon-order-history' %}
+              </span>
+            </div>
+            <p class="font-Mukta text-primary font-semibold uppercase">Order History</p>
+          </a>
+
+          <a href="#" class="w-[220px] pendingOrder shadow-lg flex flex-col gap-y-2 border-2 border-primary p-5 items-center rounded-md">
+            <div class="">
+              <span class="pendingOrder-icon">
+                {% render 'icon-pending' %}
+              </span>
+            </div>
+            <p class="font-Mukta text-primary font-semibold uppercase">Pending Order</p>
+          </a>
+
+          <a href="#" class="w-[220px] edtiProfile shadow-lg flex flex-col gap-y-2 border-2 border-primary p-5 items-center rounded-md">
+            <div class="">
+              <span class="edtiProfile-icon">
+                {% render 'icon-editprofile' %}
+              </span>
+            </div>
+            <p class="font-Mukta text-primary font-semibold uppercase">Edit profile</p>
+          </a>
+        </div>
+
+        <div class="accInfo2 flex flex-row flex-wrap justify-evenly gap-3">
+          <a href="{{ routes.account_addresses_url }}" class="w-[220px] addressBook shadow-lg flex flex-col gap-y-2 border-2 border-primary p-5 items-center rounded-md">
+            <div class="">
+              <span class="addressBook-icon">
+                {% render 'icon-addressbook' %}
+              </span>
+            </div>
+            <p class="font-Mukta text-primary font-semibold uppercase">Address book</p>
+          </a>
+
+          <a href="#wishlist" class="w-[220px] accWishlist shadow-lg flex flex-col gap-y-2 border-2 border-primary p-5 items-center rounded-md">
+            <div class="">
+              <span class="accWishlist-icon">
+                {% render 'icon-wishlist' %}
+              </span>
+            </div>
+            <p class="font-Mukta text-primary font-semibold uppercase">Wishlist</p>
+          </a>
+
+          <a href="#" class="w-[220px] passwordResetCard shadow-lg flex flex-col gap-y-2 border-2 border-primary p-5 items-center rounded-md">
+            <div class="">
+              <span class="passwordReset-icon">
+                {% render 'icon-password-reset' %}
+              </span>
+            </div>
+            <p class="font-Mukta text-primary font-semibold uppercase">Reset Password</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="passwordResetPage my-5 py-5 hidden">
+  <div class="container flex flex-col items-center">
+    <div class="reset-title text-center">
+      <h1 class="font-Mukta uppercase text-[26px]">Reset Your Password</h1>
+    </div>
+
+    <div class="form-container my-5">
+      <div class="recover-form min-w-[280px] md:min-w-[448px] md:max-w-md w-full">
+        <p class="mb-5 text-[14px] tracking-[1px] text-center">We will send you an email to reset your password.</p>
+        {% form 'recover_customer_password' %}
+          {% if form.errors %}
+            <div class="relative border border-red-400 bg-red-100 text-red-700 px-4 py-3" role="alert">
+              <strong class="font-bold">Error!</strong>
+              <p class="block sm:inline">{{ form.errors | default_errors }}</p>
+            </div>
+          {% endif %}
+          <div class="flex flex-col gap-y-8 w-full">
+            <div class="r-email_input w-full flex flex-col gap-y-2">
+              <div class="r-email_label w-full">
+                <label for="email" class="uppercase tracking-[2px] text-[13px]">Email</label>
+              </div>
+              <div class="r-email_input w-full">
+                <input
+                  id="email"
+                  type="email"
+                  autocomplete="email"
+                  class="w-full bg-transparent border border-[#c1c1c1] px-3 py-2 text-[18px]"
+                  name="email">
+              </div>
+            </div>
+            <div class="login_btn">
+              <button type="submit" class="w-full py-3 text-white bg-primary uppercase text-[14px] rounded-sm tracking-[2px] hover:text-primary hover:bg-white border-2 border-primary transition-all">Recover password</button>
+            </div>
+            <div class="backToAccFromResetPage flex justify-center items-center">
+              <a href="#">Cancel</a>
+            </div>
+          </div>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const accountPage = document.querySelector(".accountPage");
+
+// FOr Reset Password events...
+  const passwordResetPage = document.querySelector(".passwordResetPage");
+
+  document.querySelector(".passwordResetCard").addEventListener("click", () => {
+    accountPage.classList.add("hidden");
+    passwordResetPage.classList.remove("hidden");
+  });
+
+  document.querySelector(".backToAccFromResetPage a").addEventListener("click", () => {
+    if (! passwordResetPage.classList.contains("hidden")) {
+      passwordResetPage.classList.add("hidden");
+      accountPage.classList.remove("hidden");
+    }
+  })
+</script>

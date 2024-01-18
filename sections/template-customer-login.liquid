@@ -1,0 +1,117 @@
+<div class="my-5 pt-5 pb-10">
+  <div class="container flex flex-col items-center">
+    <div class="login-title text-center">
+      <h1 class=" uppercase text-[26px] font-semibold text-[#4b4b4b]">Login</h1>
+    </div>
+    <div class="form-container my-5 flex flex-col gap-y-5">
+      <div class="login-form min-w-[280px] md:min-w-[448px] md:max-w-md w-full">
+        {% form 'customer_login' %}
+          {% if form.errors %}
+            <div class="relative border border-red-400 bg-red-100 text-red-700 px-4 py-3" role="alert">
+              <strong class="font-bold ">Error!</strong>
+              <p class="block sm:inline ">{{ form.errors | default_errors }}</p>
+            </div>
+          {% endif %}
+          <div class="flex flex-col gap-y-8 w-full">
+            <div class="l-email_input w-full flex flex-col gap-y-2">
+              <div class="l-email_label w-full">
+                <label for="email_address" class="uppercase tracking-[2px] text-[13px] ">Email</label>
+              </div>
+              <div class="l-email_input w-full">
+                <input
+                  id="email_address"
+                  type="email"
+                  autocomplete="email"
+                  class="w-full bg-transparent border border-[#c1c1c1] px-3 py-2 text-[18px] "
+                  name="customer[email]">
+              </div>
+            </div>
+
+            {% if form.password_needed %}
+              <div class="password_input w-full flex flex-col gap-y-2">
+                <div class="password_label w-full flex items-center justify-between">
+                  <label for="password" class="uppercase tracking-[2px] text-[13px] ">Password</label>
+                  <a
+                    href="#"
+                    class="text-[13px] "
+                    id="forgotLink">Forgot password?</a>
+                </div>
+                <div class="password_input w-full">
+                  <input
+                    id="password"
+                    type="password"
+                    autocomplete="off"
+                    class="w-full bg-transparent border border-[#c1c1c1] px-3 py-2 text-[18px]"
+                    name="customer[password]">
+                </div>
+              </div>
+            {% endif %}
+
+            <div class="login_btn">
+              <button type="submit" class="w-full py-3 text-white bg-primary uppercase text-[14px] rounded-sm tracking-[2px] hover:text-primary hover:bg-white border-2 border-primary transition-all ">Login</button>
+            </div>
+
+            <div class="register flex justify-center items-center">
+              <a href="{{ routes.account_register_url }}" class="">Create account</a>
+            </div>
+          </div>
+        {% endform %}
+      </div>
+
+
+
+      <div class="recover-form min-w-[280px] md:min-w-[448px] md:max-w-md w-full hidden">
+        <p class="mb-5 text-[14px] tracking-[1px]">We will send you an email to reset your password.</p>
+        {% form 'recover_customer_password' %}
+          {% if form.errors %}
+            <div class="relative border border-red-400 bg-red-100 text-red-700 px-4 py-3" role="alert">
+              <strong class="font-bold">Error!</strong>
+              <p class="block sm:inline">{{ form.errors | default_errors }}</p>
+            </div>
+          {% endif %}
+          <div class="flex flex-col gap-y-8 w-full">
+            <div class="r-email_input w-full flex flex-col gap-y-2">
+              <div class="r-email_label w-full">
+                <label for="email" class="uppercase tracking-[2px] text-[13px]">Email</label>
+              </div>
+              <div class="r-email_input w-full">
+                <input
+                  id="email"
+                  type="email"
+                  autocomplete="email"
+                  class="w-full bg-transparent border border-[#c1c1c1] px-3 py-2 text-[18px]"
+                  name="email">
+              </div>
+            </div>
+            <div class="login_btn">
+              <button type="submit" class="w-full py-3 text-white bg-primary uppercase text-[14px] rounded-sm tracking-[2px] hover:text-primary hover:bg-white border-2 border-primary transition-all">Recover password</button>
+            </div>
+            <div class="cancel flex justify-center items-center">
+              <a href="#">Cancel</a>
+            </div>
+          </div>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const pageHeading = document.querySelector(".login-title h1");
+  const loginForm = document.querySelector(".login-form");
+  const recoverForm = document.querySelector(".recover-form");
+  const forgotLink = document.getElementById("forgotLink");
+  const cancelLink = document.querySelector(".cancel");
+
+  forgotLink.addEventListener("click", () => {
+    loginForm.classList.add("hidden");
+    recoverForm.classList.remove("hidden");
+    pageHeading.textContent = "Reset Your Password";
+  });
+
+  cancelLink.addEventListener("click", () => {
+    loginForm.classList.remove("hidden");
+    recoverForm.classList.add("hidden");
+    pageHeading.textContent = "Login";
+  })
+</script>

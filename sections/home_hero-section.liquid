@@ -1,0 +1,67 @@
+{% style %}
+  .hero-slideshow .splide__pagination {
+    bottom: 10px;
+  }
+
+  .hero-slideshow .splide__pagination .splide__pagination__page.is-active {
+    background-color: #c3404e;
+  }
+
+  .hero-slideshow .splide__pagination .splide__pagination__page {
+    background-color: #c1c1c1;
+  }
+{% endstyle %}
+
+{% comment %} https://cdn.shopify.com/s/files/1/0694/3827/5873/files/jaipur_paisely_banner_NEW.jpg?v=1674644798 {% endcomment %}
+
+<div class="hero-slideshow flex justify-center relative">
+  <div class="hero-slideshow_wrapper flex justify-center">
+    <div
+      class="splide"
+      role="group"
+      aria-label="Splide Basic HTML Example">
+      <div class="splide__track">
+        <ul class="splide__list">
+          <li class="splide__slide">
+            <div class="banner mx-auto">
+              <a href="#">
+                <img
+                  class="mx-auto"
+                  style="min-width: 100%;"
+                  src="https://cdn.shopify.com/s/files/1/0721/4887/7629/t/4/assets/Banner-1.jpg?v=1678261518"
+                  alt="Banner1">
+              </a>
+            </div>
+          </li>
+          <li class="splide__slide">
+            <div class="banner mx-auto">
+              <a href="#">
+                <img
+                  class="mx-auto"
+                  style="min-width: 100%;"
+                  src="https://cdn.shopify.com/s/files/1/0721/4887/7629/t/4/assets/Banner-2.jpg?v=1678261535"
+                  alt="Banner1">
+              </a>
+            </div>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  new Splide('.splide', {
+    type: "loop",
+    pagination: true,
+    arrows: false,
+    autoplay: true,
+    mediaQuery: "min",
+    breakpoints: {
+      768: {
+        arrows: true
+      }
+    }
+  }).mount();
+</script>

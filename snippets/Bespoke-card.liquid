@@ -1,0 +1,95 @@
+{% style %}
+  .bespoke-card {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .bespoke-card .img {
+    width: 252px;
+  }
+
+  .titleWLike {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .titleWLike .icon {
+    width: 23px;
+    height: 32px;
+  }
+
+  .splide__arrows {
+    position: absolute;
+    right: 53px;
+    top: -21px;
+    display: flex;
+  }
+
+  .product_price {
+    padding: 4px 0;
+    position: absolute;
+    top: 0;
+    right: 4px;
+    font-size: 13px;
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+
+  .product_name {
+    padding: 4px 0;
+    position: absolute;
+    left: 4px;
+    bottom: 0;
+    font-size: 13px;
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+
+  .bespoke-card:hover .product_price,
+  .bespoke-card:hover .product_name {
+    opacity: 1;
+  }
+
+  .splide__arrows > button:nth-child(1) {
+    order: 1;
+    transform: translate(-56px, -16px);
+  }
+
+  .splide__arrows > button:nth-child(2) {
+    order: 0;
+    transform: translate(47px, -16px);
+  }
+{% endstyle %}
+
+<div class="bespoke-card position-relative">
+  <a href="{{ product.url }}">
+    <div class="img-fluid">
+      <img
+        class="img-responsive"
+        alt="{{ product.featured_image.alt }}"
+        src="{{ product.featured_image | img_url: '800x800' }}">
+    </div>
+
+   <div class="slide-content-without-city" style="text-align:left;">
+   <div class="truncate" style="color:#666;text-transform: capitalize;">{{ product.title }}</div>
+   <div class="price" style=" text-align:left;font-size:18px; color:#333;/*color:#ec018c;/*color:#222;*/">
+      <span style="font-size:15px;" class="moneySymbol">₹</span> <span data-inr="849" class="moneyCal">{{ product.price | money }}</span>
+      <span style="text-decoration:line-through; font-size:16px; padding-left: 3px; color:#878787;">
+      
+     
+   </div>
+   <div style="font-size:13px;color:#888; min-height:19.5px;">
+      Earliest Delivery:
+      <span style="color: #66b266; font-weight: 700;">Today</span>
+   </div>
+   <div style="display:inline-block;color:#e7711b;font-size:14px;  padding-top:15px; ">5.0</div>
+   <div style="display:inline-block;"><span class="stars" style="font-size: 18px" data-rating="5.0"><span class="stars-container stars-100">★★★★★</span></span> 
+      <span style="color: #888; font-size:13px;"> 4 Reviews </span>
+   </div>
+</div>
+  </a>
+
+</div>

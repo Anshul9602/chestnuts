@@ -1,0 +1,108 @@
+`<div class="category-section px-5 py-16 ">
+  <div class="">
+    <div
+      class="splide"
+      id="categorySlider"
+      role="group"
+      aria-label="Splide Basic HTML Example">
+      <div class="splide__track">
+        <ul class="splide__list " style="display:flex;     justify-content: center;">
+          <li class="splide__slide">
+            <a href="https://cheswnut.myshopify.com/collections/yummy-cakes" class="flex flex-col items-center gap-2">
+              <img
+                src="https://cdn.shopify.com/s/files/1/0721/4887/7629/t/4/assets/Cat-cake.png?v=1678363073"
+                alt="Cakes"
+                class="w-[130px] h-[130px]">
+              <span class="uppercase text-xs">Cakes</span>
+            </a>
+          </li>
+          <li class="splide__slide">
+            <a href="https://cheswnut.myshopify.com/collections/cake" class="flex flex-col items-center gap-2">
+              <img
+                src="https://cdn.shopify.com/s/files/1/0721/4887/7629/t/4/assets/Cat-flower.png?v=1678363183"
+                alt="Flowers"
+                class="w-[130px] h-[130px]">
+              <span class="uppercase text-xs">Flowers</span>
+            </a>
+          </li>
+
+          <li class="splide__slide">
+            <a href="#" class="flex flex-col items-center gap-2">
+              <img
+                src="https://cdn.shopify.com/s/files/1/0721/4887/7629/t/4/assets/Cat-cookies.png?v=1678363147"
+                alt="Personalized Gifts"
+                class="w-[130px] h-[130px]">
+              <span class="uppercase text-xs">Cookies</span>
+            </a>
+          </li>
+
+          <li class="splide__slide">
+            <a href="#" class="flex flex-col items-center gap-2">
+              <img
+                src="https://cdn.shopify.com/s/files/1/0721/4887/7629/t/4/assets/Cat-chocolate.png?v=1678363122"
+                alt="Chocolates"
+                class="w-[130px] h-[130px]">
+              <span class="uppercase text-xs">Chocolates</span>
+            </a>
+          </li>
+
+          <li class="splide__slide">
+            <a href="#" class="flex flex-col items-center gap-2">
+              <img
+                src="https://cdn.shopify.com/s/files/1/0721/4887/7629/t/4/assets/Cat-occasion.png?v=1678363247"
+                alt="Combos"
+                class="w-[130px] h-[130px]">
+              <span class="uppercase text-xs">OCCASIONS</span>
+            </a>
+          </li>
+
+          <li class="splide__slide">
+            <a href="#" class="flex flex-col items-center gap-2">
+              <img
+                src="https://cdn.shopify.com/s/files/1/0721/4887/7629/t/4/assets/Cat-gift.png?v=1678363219"
+                alt="Gifts"
+                class="w-[130px] h-[130px]">
+              <span class="uppercase text-xs">Gifts</span>
+            </a>
+          </li>
+
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  new Splide('#categorySlider', {
+    type: "slide",
+    pagination: false,
+    perPage: 2,
+    perMove: 1,
+    arrows: true,
+    mediaQuery: "min",
+    breakpoints: {
+      500: {
+        perPage: 3,
+        perMove: 1
+      },
+      640: {
+        perPage: 4,
+        perMove: 1
+      },
+      768: {
+        perPage: 5,
+        perMove: 1
+      },
+      1024: {
+        perPage: 7,
+        perMove: 1
+      },
+      1280: {
+        perPage: 9,
+        perMove: 1
+      }
+
+    }
+  }).mount();
+</script>

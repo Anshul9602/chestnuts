@@ -1,0 +1,211 @@
+
+
+{% style %}
+
+
+  .product-block {
+    padding: 10px;
+  }
+
+  .product-block .title-name {
+    font-size: 14px !important;
+  }
+
+  .product-block .over .price {
+    font-size: 18px !important;
+  }
+
+  .product-block .box .btn-default {
+    font-size: 18px;
+  }
+
+
+  .like i {
+    font-size: 30px;
+  }
+
+  .like:hover i {
+    color: white;
+  }
+
+  .holder {
+    display: flex;
+    align-items: center;
+  }
+
+  @media(min-width: 768px) {
+    .product-block.coll-2 .over,
+    .product-block .over {
+      padding: 8px 15px;
+    }
+
+    .product-block .box .btn-default {
+      font-size: 10px;
+    }
+
+    .product-block.coll-2 {
+      width: 33%
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    .product-block.coll-2 .btn-default::before,
+    .product-block.coll-2 .btn-default::after {
+      display: none;
+    }
+  }
+
+
+
+  @media(min-width: 1024px) {
+    .btn-default {
+      font-size: 20px;
+      line-height: 22px;
+      padding: 15px;
+      height: 47px;
+      width: 192px;
+      letter-spacing: 4px;
+    }
+
+    .product-block.coll-2 .btn-default {
+      margin: -46px 0 0;
+    }
+
+    .product-block.coll-2 .btn-default::before {
+      top: -42px;
+      padding: 16px;
+    }
+
+    .product-block.coll-2 .btn-default::after {
+      bottom: -43px;
+      padding: 16px;
+    }
+  }
+
+  @media screen and (min-width: 1121px) {
+    .product-block.coll-2 .btn-default::before,
+    .product-block.coll-2 .btn-default::after {
+      display: block;
+    }
+
+    .product-block .box .btn-default {
+      font-size: 15px;
+    }
+  }
+
+
+  @media(min-width: 1280px) {
+    .product-block.coll-2 .over {
+      padding: 17px 32px 5px;
+    }
+
+    .product-block.coll-2 .btn-default {
+      margin: -48px 0 0;
+    }
+
+    .btn-default {
+      line-height: 26px;
+      padding: 19px 14px 17px;
+      height: 60px;
+      width: 200px;
+    }
+
+    .product-block.coll-2 .btn-default::before {
+      top: -53px;
+      padding: 21px;
+    }
+
+    .product-block.coll-2 .btn-default::after {
+      bottom: -54px;
+      padding: 21px;
+    }
+  }
+
+  .product_price {
+    padding: 4px 0;
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 13px;
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+
+  .product_name {
+    padding: 4px 0;
+    position: absolute;
+    left: 16px;
+    bottom: 8px;
+
+    font-size: 13px;
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+
+  .product-block:hover .product_price,
+  .product-block:hover .product_name {
+    opacity: 1;
+  }
+{% endstyle %}
+
+{% comment %} 
+
+{% endcomment %}
+
+<section
+   class="product-sec wow fadeInUp pt-3"
+   data-wow-delay="0.1s"  style="min-height:800px;">
+   <div class="container">
+      <div class="row text-center">
+         <div class="col-xs-12" >
+            <h3 class="text-[20px] md:text-[30px] font-bold text-[#4d4d4d]">{{ collection.title }}</h3>
+         </div>
+      </div>
+      <br/>
+      <div class="row">
+         <div class="">
+            <div
+               class="product-sec wow fadeInUp"
+               data-wow-delay="0.2s"
+               style=" width: 100%">
+               <div class="product-holder row " style=" justify-content:center;">
+                  {% paginate collection.products %}
+                  {% for product in collection.products %}
+                  <div class="product-block block col-md-3 position-relative">
+                     <a href="{{ product.url }}" class="banner-shadow block w-full rounded-md">
+                        <div class="flex flex-col">
+                           <img
+                              src="{{ product.featured_image | img_url: '800x800' }}"
+                              alt="bcd"
+                              class="rounded-t-md">
+                           <div class="bg-white py-1 px-3 flex flex-row justify-between items-center rounded-b-md">
+                              <div class="flex flex-col">
+                                 <div class="slide-content-without-city" style="text-align:left;">
+                                    <div class="truncate" style="color:#666;text-transform: capitalize;">{{ product.title }}</div>
+                                    <div class="price" style=" text-align:left;font-size:18px; color:#333;/*color:#ec018c;/*color:#222;*/">
+                                       <span style="font-size:15px;" class="moneySymbol">₹</span> <span data-inr="849" class="moneyCal">{{ product.price | money }}</span>
+                                       <span style="text-decoration:line-through; font-size:16px; padding-left: 3px; color:#878787;">
+                                    </div>
+                                    <div style="font-size:13px;color:#888; min-height:19.5px;">
+                                       Earliest Delivery:
+                                       <span style="color: #66b266; font-weight: 700;">Today</span>
+                                    </div>
+                                    <div style="display:inline-block;color:#e7711b;font-size:14px;  padding-top:15px; ">5.0</div>
+                                    <div style="display:inline-block;"><span class="stars" style="font-size: 18px" data-rating="5.0"><span class="stars-container stars-100">★★★★★</span></span> 
+                                       <span style="color: #888; font-size:13px;"> 4 Reviews </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </a>
+                  </div>
+                  {% endfor %}
+                  {% endpaginate %}
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<br/><br/>

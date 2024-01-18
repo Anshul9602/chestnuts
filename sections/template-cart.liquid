@@ -1,0 +1,204 @@
+{% if cart.item_count > 0 %}
+  <h1>cart</h1>
+  <form action="/cart" method="post" novalidate>
+    <table>
+      <thead>
+        <th colspan="2">Prod</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th>total</th>
+      </thead>
+      <tbody>
+        {% for item in cart.items %}
+          <tr>
+            <td>
+              <a href="{{ item.url | within: collections.all }}">
+                <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">
+              </a>
+            </td>
+            <td>
+              <a href="{{ item.url }}">{{ item.product.title }}</a>
+              {{ item.variant.title }}
+              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">remove</a>
+            </td>
+            <td>{{ item.price | money }}</td>
+            <td>
+              <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
+            </td>
+            <td>
+              {% if item.original_line_price != item.line_price %}{{ item.original_line_price | money }}{% endif %}
+              {{ item.line_price | money }}
+              {% for discount in item.discounts %}{{ discount.title }}{% endfor %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div>
+      <p>sub total : {{ cart.total_price | money }}</p>
+      <button type="submit" name="update">Update</button>
+      <button type="submit" name="checkout">Checkout</button>
+    </div>
+  </form>
+{% else %}
+  <h2>cart</h2>
+  Cart is empty
+{% endif %}
+
+
+
+
+
+{%- style -%}
+  .btn-more {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 300ms ease-in-out;
+  }
+
+  .btn-more i {
+    transition: all 300ms ease-in-out;
+    transform: rotate(180deg);
+  }
+
+  .btn-more:hover i {
+    translate: 10px 0;
+  }
+
+  .btn-more:focus {
+    color: #C99035;
+  }
+
+  .cart_btn .btn-primary {
+    width: auto !important;
+    font-size: 18px !important;
+    padding: 10px 15px !important;
+  }
+
+  button.btn-primary {
+    border: none;
+  }
+
+  .margin-left {
+    margin-left: 10px !important;
+  }
+{%- endstyle -%}
+
+{% if cart.item_count > 0 %}
+
+  <section class="shoping-cat-detail">
+    <form action="{{ routes.cart_url }}" method="POST">
+      <div class="container">
+        <div
+          class="row wow fadeInUp"
+          data-wow-delay="0.1s"
+          style="visibility: hidden">
+          <div class="col-xs-12 col-sm-2">
+            <span class="title">item</span>
+          </div>
+          <div class="col-xs-12 col-sm-3">
+            <span class="title">detail</span>
+          </div>
+          <div class="col-xs-12 col-sm-2">
+            <span class="title">price</span>
+          </div>
+          <div class="col-xs-12 col-sm-3">
+            <span class="title">quantily</span>
+          </div>
+          <div class="col-xs-12 col-sm-2">
+            <span class="title">total</span>
+          </div>
+        </div>
+        <hr>
+
+        {% for item in cart.items %}
+          <div
+            class="row wow fadeInUp"
+            data-wow-delay="0.2s"
+            style="visibility: hidden;">
+            <div class="detail-holder">
+              <div class="col-xs-12 col-sm-2">
+                <a href="{{ item.url }}">
+                  <div class="img-holder">
+                    <img src="{{ item.image | img_url: 'large' }}" alt="{{ item.title | escape }}">
+                  </div>
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-3">
+                <span class="txt">{{ item.title }}</span>
+              </div>
+              <div class="col-xs-12 col-sm-2">
+                <span class="txt">{{ item.final_price | money }}</span>
+              </div>
+              <div class="col-xs-12 col-sm-3">
+                <span class="qynt">{{ item.quantity }}</span>
+              </div>
+              <div class="col-xs-12 col-sm-2">
+                <span class="txt">{{ item.final_line_price | money }}</span>
+                <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" class="txt margin-left">
+                  <i class='bx bx-trash'></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <hr/>
+        {% endfor %}
+
+        <div
+          class="row total-pay wow fadeInUp"
+          data-wow-delay="0.4s"
+          style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
+          <div class="col-xs-12 col-sm-7">
+            <strong class="title">coupon</strong>
+            <form action="#" class="form">
+              <fieldset>
+                <input
+                  type="text"
+                  placeholder="Enter promotion code here"
+                  class="form-control"
+                  style="height:55px">
+                <button type="submit" class="btn">apply</button>
+              </fieldset>
+            </form>
+
+          </div>
+          <div class="col-xs-12 col-sm-5">
+            <div class="total-amunt">
+              <div class="holder">
+                <strong class="heading">Subtotal</strong>
+                <span class="price">{{ cart.total_price | money }}</span>
+              </div>
+              <div class="holder">
+                <strong class="heading">Tax</strong>
+                <span class="price">$13</span>
+              </div>
+              <div class="holder">
+                <strong class="heading">total</strong>
+                <span class="price">{{ cart.total_price | money }}</span>
+              </div>
+              <button
+                name="checkout"
+                type="submit"
+                class="btn-primary">process to chectout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </section>
+
+{% else %}
+  <div class="shopping-cart-detail">
+    <div class="container d-flex justify-content-center align-items-center" style="min-height:70vh;">
+      <div class="row">
+        <div class="col-12 d-flex flex-column align-items-center">
+          <h1 class="mb-5">Your Cart is empty</h1>
+          <div class="cart_btn">
+            <a href="{{ routes.all_products_collection_url }}" class="btn-primary">Continue Shopping</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

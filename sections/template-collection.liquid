@@ -1,0 +1,195 @@
+{% style %}
+
+
+  .product-block {
+    padding: 10px;
+  }
+
+  .product-block .title-name {
+    font-size: 14px !important;
+  }
+
+  .product-block .over .price {
+    font-size: 18px !important;
+  }
+
+  .product-block .box .btn-default {
+    font-size: 18px;
+  }
+
+
+  .like i {
+    font-size: 30px;
+  }
+
+  .like:hover i {
+    color: white;
+  }
+
+  .holder {
+    display: flex;
+    align-items: center;
+  }
+
+  @media(min-width: 768px) {
+    .product-block.coll-2 .over,
+    .product-block .over {
+      padding: 8px 15px;
+    }
+
+    .product-block .box .btn-default {
+      font-size: 10px;
+    }
+
+    .product-block.coll-2 {
+      width: 33%
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    .product-block.coll-2 .btn-default::before,
+    .product-block.coll-2 .btn-default::after {
+      display: none;
+    }
+  }
+
+
+
+  @media(min-width: 1024px) {
+    .btn-default {
+      font-size: 20px;
+      line-height: 22px;
+      padding: 15px;
+      height: 47px;
+      width: 192px;
+      letter-spacing: 4px;
+    }
+
+    .product-block.coll-2 .btn-default {
+      margin: -46px 0 0;
+    }
+
+    .product-block.coll-2 .btn-default::before {
+      top: -42px;
+      padding: 16px;
+    }
+
+    .product-block.coll-2 .btn-default::after {
+      bottom: -43px;
+      padding: 16px;
+    }
+  }
+
+  @media screen and (min-width: 1121px) {
+    .product-block.coll-2 .btn-default::before,
+    .product-block.coll-2 .btn-default::after {
+      display: block;
+    }
+
+    .product-block .box .btn-default {
+      font-size: 15px;
+    }
+  }
+
+
+  @media(min-width: 1280px) {
+    .product-block.coll-2 .over {
+      padding: 17px 32px 5px;
+    }
+
+    .product-block.coll-2 .btn-default {
+      margin: -48px 0 0;
+    }
+
+    .btn-default {
+      line-height: 26px;
+      padding: 19px 14px 17px;
+      height: 60px;
+      width: 200px;
+    }
+
+    .product-block.coll-2 .btn-default::before {
+      top: -53px;
+      padding: 21px;
+    }
+
+    .product-block.coll-2 .btn-default::after {
+      bottom: -54px;
+      padding: 21px;
+    }
+  }
+
+  .product_price {
+    padding: 4px 0;
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 13px;
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+
+  .product_name {
+    padding: 4px 0;
+    position: absolute;
+    left: 16px;
+    bottom: 8px;
+
+    font-size: 13px;
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+
+  .product-block:hover .product_price,
+  .product-block:hover .product_name {
+    opacity: 1;
+  }
+{% endstyle %}
+
+{% comment %} 
+
+{% endcomment %}
+
+<section
+  class="product-sec wow fadeInUp"
+  style="visibility:hidden"
+  data-wow-delay="0.1s">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="text-center text-uppercase">{{ collection.title }}</h2>
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-xs-12">
+        <div
+          class="product-sec wow fadeInUp"
+          data-wow-delay="0.2s"
+          style="visibility: hidden; width: 100%">
+          <div class="product-holder d-flex flex-row flex-wrap justify-content-center" style="gap:3px;">
+            {% paginate collection.products %}
+              {% for product in collection.products %}
+                <div class="product-block block coll-2 position-relative">
+                  <a href="{{ product.url }}">
+                    <div class="img-fluid">
+                      <img
+                        class="img-responsive"
+                        alt="{{ product.featured_image.alt }}"
+                        src="{{ product.featured_image | img_url: '800x800' }}">
+                    </div>
+
+                    <div class="product_price text-black">{{ product.price | money }}</div>
+                    <div class="product_name text-black">{{ product.title }}</div>
+                  </a>
+                </div>
+              {% endfor %}
+            {% endpaginate %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+<br/><br/>
