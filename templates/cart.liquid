@@ -1,200 +1,217 @@
 <style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-.shoping-cat-detail .holder .heading {
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  .shoping-cat-detail .holder .heading {
     font-size: 18px;
     line-height: 20px;
     width: 63%;
     float: left;
     color: #747474;
-  margin-bottom: 10px;
-}
+    margin-bottom: 10px;
+  }
+
   .shoping-cat-detail .holder .price {
     float: left;
     width: 37%;
     color: #747474;
     font-size: 18px;
     line-height: 20px;
-     margin-bottom: 10px;
-}
-td, th {
-  
-  text-align: left;
-  padding: 8px;
-}
+    margin-bottom: 10px;
+  }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
+  td,
+  th {
+
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
 </style>
 
 
 
 
 {%- style -%}
-  .btn-more {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: all 300ms ease-in-out;
-  }
+.btn-more {
+display: flex;
+align-items: center;
+gap: 6px;
+transition: all 300ms ease-in-out;
+}
 
-  .btn-more i {
-    transition: all 300ms ease-in-out;
-    transform: rotate(180deg);
-  }
+.btn-more i {
+transition: all 300ms ease-in-out;
+transform: rotate(180deg);
+}
 
-  .btn-more:hover i {
-    translate: 10px 0;
-  }
+.btn-more:hover i {
+translate: 10px 0;
+}
 
-  .btn-more:focus {
-    color: #C99035;
-  }
+.btn-more:focus {
+color: #C99035;
+}
 
-  .cart_btn .btn-primary {
-    width: auto !important;
-    font-size: 18px !important;
-    padding: 10px 15px !important;
-  }
+.cart_btn .btn-primary {
+width: auto !important;
+font-size: 18px !important;
+padding: 10px 15px !important;
+}
 .button1 {
-  background-color: #2f1b17; /* Green */
-  border: none;
-  color: #cea556;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-      border-radius: 12px;
+background-color: #2f1b17; /* Green */
+border: none;
+color: #cea556;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+border-radius: 12px;
 }
-  .button2 {
-  background-color: #2f1b17; /* Green */
-  border: none;
-  color: #cea556;
-  padding: 5px 12px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-      border-radius: 12px;
+.button2 {
+background-color: #2f1b17; /* Green */
+border: none;
+color: #cea556;
+padding: 5px 12px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+border-radius: 12px;
 }
-  @media (max-width: 768px) {
-  .grid {
-    display:grid  !important;
-    text-iteam:center;
-  }
-  .dataprice{
-    width:100% !important;
-    display: flex;
-    justify-content: center;
-    
-  }
+@media (max-width: 768px) {
+.grid {
+display:grid !important;
+text-iteam:center;
 }
-  
+.dataprice{
+width:100% !important;
+display: flex;
+justify-content: center;
 
-  .margin-left {
-    margin-left: 10px !important;
-  }
+}
+}
+td, th {
+border: 1px solid #dddddd;
+text-align: left;
+padding: 8px;
+}
+
+.margin-left {
+margin-left: 10px !important;
+}
 {%- endstyle -%}
 
 {% if cart.item_count > 0 %}
 
-  <section class="shoping-cat-detail px-5">
+<section class="shoping-cat-detail px-5">
   <div class="product-title" style="    text-align: center;margin-top:30px;">
-               <h1 class="text-[30px] font-Mukta font-semibold" style="font-weight: 700;font-size: 25px;" >Cart</h1>
+    <h1 class="text-[30px] font-Mukta font-semibold" style="font-weight: 700;font-size: 25px;">Cart</h1>
+  </div>
+  </br></br>
+  <form action="/cart" method="POST">
+    <div class="container">
+      <table>
+        <thead>
+          <th>Product</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>total</th>
+        </thead>
+        <tbody>
+          {% for item in cart.items %}
+          <tr>
+            <td>
+              <a href="{{ item.url | within: collections.all }}">
+                <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">
+              </a>
+            </td>
+            <td>
+              <a href="{{ item.url }}">{{ item.product.title }}</a>
+              {{ item.variant.title }}
+            </td>
+            <td>{{ item.price | money }}</td>
+            <td>
+              <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0"
+                style="    width: 100px;    text-align: center;
+                                border: 1px solid;
+                                border-radius: 10px;
+                                padding: 5px;
+                                margin-right: 10px;"><button type="submit" class="btn-primary button2"
+                name="update">Update</button>
+            </td>
+            <td>
+              {% if item.original_line_price != item.line_price %}{{ item.original_line_price | money }}{% endif %}
+              {{ item.line_price | money }}
+              {% for discount in item.discounts %}{{ discount.title }}{% endfor %}
+              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0"> <i class='bx bx-trash'></i></a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <hr>
+      <div class="row " data-wow-delay="0.4s"
+        style=" justify-content: space-around;display:flex;margin-top:20px;">
+        <div class="col-md-4 dataprice " >
+          <strong class="title pb-4">Coupon</strong>
+          <form action="#" class="form mt-4">
+            <fieldset style="    display: flex;margin-top:10px;">
+            <div class="row">
+              <div class="col-md-8"> <input type="text" placeholder="Enter promotion code here" class="form-control" style="height:45px;"></div>
+              <div class="col-md-3"> <button type="submit" class="btn btn-success"style="height:45px;" >apply</button></div>
             </div>
-      </br></br>
-    <form action="/cart" method="POST">
-        <div class="container">
-            <table>
-                <thead>
-                    <th>Product</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Qty</th>
-                    <th>total</th>
-                </thead>
-                <tbody>
-                    {% for item in cart.items %}
-                    <tr>
-                        <td>
-                            <a href="{{ item.url | within: collections.all }}">
-                                <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{{ item.url }}">{{ item.product.title }}</a>
-                            {{ item.variant.title }}
-                        </td>
-                        <td>{{ item.price | money }}</td>
-                        <td>
-                            <input type="number" name="updates[]" id="updates_{{ item.key }}"
-                                value="{{ item.quantity }}" min="0"><button type="submit"class="btn-primary button2" name="update" >Update</button>
-                        </td>
-                        <td>
-                            {% if item.original_line_price != item.line_price %}{{ item.original_line_price | money }}{% endif %}
-                            {{ item.line_price | money }}
-                            {% for discount in item.discounts %}{{ discount.title }}{% endfor %}
-                            <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0"> <i
-                                    class='bx bx-trash'></i></a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            <div class="row total-pay wow fadeInUp grid grid-cols-1 md:grid-cols-2 gap-5 " data-wow-delay="0.4s"
-                style=" justify-content: space-around;visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;display:flex;margin-top:20px;">
-                <div class="col-xs-12 col-sm-7 dataprice px-5" style="width:60%;">
-                    <strong class="title">coupon</strong>
-                    <form action="#" class="form">
-                        <fieldset>
-                            <input type="text" placeholder="Enter promotion code here" class="form-control"
-                                style="height:55px">
-                            <button type="submit" class="btn">apply</button>
-                        </fieldset>
-                    </form>
-                </div>
-                <div class="col-xs-12 col-sm-5 dataprice" style="width:39%;">
-                    <div class="total-amunt">
-                        <div class="holder">
-                            <strong class="heading">Subtotal  :</strong>
-                            <span class="price">{{ cart.total_price | money }}</span>
-                        </div>
-                        <div class="holder">
-                            <strong class="heading">Tax  :</strong>
-                            <span class="price">Rs. 44.91</span>
-                        </div>
-                        <div class="holder">
-                            <strong class="heading">total  :</strong>
-                            <span class="price">{{ cart.total_price |plus : 4491 | money}} </span>
-                        </div>
-                     
-                      </div>
-                  <div class="process" style="text-align: end;">
-                        <br><br>
-                        <button name="checkout" type="submit" class="btn-primary button1"style="margin-bottom:20px;margin-top:20px;">process to chectout</button>
-                    </div>
-                </div>
-            </div>
+             
+             
+            </fieldset>
+          </form>
         </div>
-    </form>
-</section>
+        <div class="col-md-6 dataprice" >
+          <div class="total-amunt">
+            <div class="holder">
+              <strong class="heading">Subtotal :</strong>
+              <span class="price">{{ cart.total_price | money }}</span>
+            </div>
+            <div class="holder">
+              <strong class="heading">Tax :</strong>
+              <span class="price">Rs. 44.91</span>
+            </div>
+            <div class="holder">
+              <strong class="heading">total :</strong>
+              <span class="price">{{ cart.total_price |plus : 4491 | money}} </span>
+            </div>
 
-{% else %}
-  <div class="shopping-cart-detail">
-    <div class="container d-flex justify-content-center align-items-center" style="min-height:70vh;">
-      <div class="row">
-        <div class="col-12 d-flex flex-column align-items-center">
-          <h1 class="mb-5">Your Cart is empty</h1>
-          <div class="cart_btn">
-            <a href="{{ routes.all_products_collection_url }}" class="btn-primary">Continue Shopping</a>
+          </div>
+          <div class="process" style="text-align: end;">
+            <br><br>
+            <button name="checkout" type="submit" class="btn-primary button1"
+              style="margin-bottom:20px;margin-top:20px;">process to chectout</button>
           </div>
         </div>
       </div>
     </div>
+  </form>
+</section>
+
+{% else %}
+<div class="shopping-cart-detail">
+  <div class="container d-flex justify-content-center align-items-center" style="min-height:70vh;">
+    <div class="row">
+      <div class="col-12 d-flex flex-column align-items-center">
+        <h1 class="mb-5">Your Cart is empty</h1>
+        <div class="cart_btn">
+          <a href="{{ routes.all_products_collection_url }}" class="btn-primary">Continue Shopping</a>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 {% endif %}
