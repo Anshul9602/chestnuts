@@ -148,7 +148,7 @@ height: auto;
 
     <!-- Main Carousel -->
 
-    <div class="product_imgs col-md-7 row m-0 p-0" style="    justify-content: space-around;    ">
+    <div class="product_imgs col-md-7 row m-0 p-md-5 p-0" style="    justify-content: space-around;    ">
       <section id="main-carousel" class="splide">
         <div class="splide__track">
           <ul class="splide__list">
@@ -159,13 +159,15 @@ height: auto;
           </ul>
         </div>
       </section>
-      <section id="thumbnail-carousel" class="splide">
-        <div class="splide__track">
-          <ul class="splide__list">
+      <section id="thumbnail-carousel" class="splide"
+        style="    max-width: 70%;    display: flex;    justify-content: center;    height: 150px;">
+        <div class="splide__track" style="width: 100%;">
+          <ul class="splide__list" style="width: 100%;    justify-content: center;">
             {% for image in product.images %}
 
 
-            <li class="splide__slide"><img src="{{ image.src | img_url: '100x100' }}" alt="" height="100"></li>
+            <li class="splide__slide" style="
+            max-width:150px;border-radius: 50%;"><img src="{{ image.src | img_url: '200x200' }}" alt="" height="100"></li>
             {% endfor %}
           </ul>
         </div>
@@ -257,20 +259,68 @@ height: auto;
 
         </div>
         </form>
+<style>.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
 
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+  width: 33.33%;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}</style>
         <div class="product-ratings"></div>
         <div class="info_container mt-10">
           <div class="product-description " style="margin-top:20px;">
-            <div class="description-wrapper">
-              <h1 style="border-bottom: 2px solid gainsboro;"
-                class="  descBtn flex items-center p-[15px] text-[14px] tracking-widest uppercase w-full">
-                <span class="text-[30px] font-Mukta font-semibold">Product Description:</span>
 
-              </h1>
-              <div id="myDropdown" class=" product-desc px-6 py-4 ">
-                <p class="font-Mukta">{{ product.description }}</p>
-              </div>
+            <div class="tab">
+              <button class="tablinks" onclick="openCity(event, 'London')">Description</button>
+              <button class="tablinks" onclick="openCity(event, 'Paris')">Product Info</button>
+              <button class="tablinks" onclick="openCity(event, 'Tokyo')">More Info</button>
             </div>
+
+
+            <div id="London" class="tabcontent" style="display: block;">
+              <p class="font-Mukta">{{ product.description }}</p>
+              
+            </div>
+
+            <div id="Paris" class="tabcontent">
+              <h3>Paris</h3>
+              <p>Paris is the capital of France.</p>
+            </div>
+
+            <div id="Tokyo" class="tabcontent">
+              <h3>Tokyo</h3>
+              <p>Tokyo is the capital of Japan.</p>
+            </div>
+            
           </div>
 
         </div>
@@ -376,7 +426,19 @@ height: auto;
 
 
   <script>
-
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
     document.addEventListener('DOMContentLoaded', function () {
       var main = new Splide('#main-carousel', {
         type: 'fade',
@@ -387,7 +449,7 @@ height: auto;
 
       var thumbnails = new Splide('#thumbnail-carousel', {
         arrows: false,
-        gap: 10,
+        gap: 5,
         rewind: true,
         isNavigation: true,
         perPage: 5,
@@ -441,7 +503,7 @@ height: auto;
   </script>
 
 
- 
+
 
 
   <script>
@@ -710,7 +772,7 @@ height: auto;
     }
 
 
- 
+
   </script>
 </div>
 </div>
