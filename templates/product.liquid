@@ -127,7 +127,9 @@ opacity: 1;
 width: 100%;
 height: auto;
 }
-
+.run .splide__arrows{
+display: none;
+}
 {% endstyle %}
 
 {% assign sectionId = section.id %}
@@ -148,7 +150,7 @@ height: auto;
 
     <!-- Main Carousel -->
 
-    <div class="product_imgs col-md-7 row m-0 p-md-5 p-0" style="    justify-content: space-around;    ">
+    <div class="product_imgs col-md-7 row m-0 pl-md-5 pr-md-5 p-0 " style="    justify-content: space-around;    ">
       <section id="main-carousel" class="splide">
         <div class="splide__track">
           <ul class="splide__list">
@@ -406,8 +408,22 @@ height: auto;
       </div>
     </div>
   </div>
+  <hr>
 
+  <section class="splide run pt-4 pb-4" aria-label="Splide Basic HTML Example" style="background: antiquewhite;">
+    <div class="splide__track">
+      <ul class="splide__list">
 
+        <li class="splide__slide text-center">
+          <h6>100% Veg - 100% Eggless</h6>
+        </li>
+        <li class="splide__slide  text-center">
+          <h6>100% Veg - 100% Eggless</h6>
+        </li>
+
+      </ul>
+    </div>
+  </section>
   <!-- slider-section of the page -->
   <br /><br />
   <div class="px-5">
@@ -422,45 +438,37 @@ height: auto;
     </div>
   </div>
 
-
-
-  <div class="px-5 relative">
-    <div class="row pm1">
-      <div class="col-12">
-        <section class="splide" id="relatedSlider" aria-label="Splide Basic HTML Example">
-          <div class="splide__track">
-            <ul class="splide__list">
-              {% paginate collections[currentProductCollection].products by 4 %}
-              {% for product in collections[currentProductCollection].products %}
-              <li class="splide__slide">
-                {% render 'Bespoke-card', product: product %}
-              </li>
-              {% endfor %}
-              {% endpaginate %}
-            </ul>
-          </div>
-        </section>
+  <div class="container">
+    <div class="px-5 relative">
+      <div class="row pm1">
+        <div class="col-12">
+          <section class="splide" id="relatedSlider" aria-label="Splide Basic HTML Example">
+            <div class="splide__track">
+              <ul class="splide__list">
+                {% paginate collections[currentProductCollection].products by 4 %}
+                {% for product in collections[currentProductCollection].products %}
+                <li class="splide__slide">
+                  {% render 'Bespoke-card', product: product %}
+                </li>
+                {% endfor %}
+                {% endpaginate %}
+              </ul>
+            </div>
+          </section>
+        </div>
       </div>
     </div>
   </div>
 
+
+
   <br /><br />
 
 
+  <script
+    src="https://unpkg.com/@splidejs/splide-extension-auto-scroll@1.0.3/dist/js/splide-extension-auto-scroll.min.js"></script>
   <script>
-    function openCity(evt, cityName) {
-      var i, tabcontent, tablinks;
-      tabcontent = document.getElementsByClassName("tabcontent");
-      for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-      }
-      tablinks = document.getElementsByClassName("tablinks");
-      for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-      }
-      document.getElementById(cityName).style.display = "block";
-      evt.currentTarget.className += " active";
-    }
+
     document.addEventListener('DOMContentLoaded', function () {
       var main = new Splide('#main-carousel', {
         type: 'fade',
@@ -487,6 +495,18 @@ height: auto;
       thumbnails.mount();
     });
     document.addEventListener('DOMContentLoaded', function () {
+      const splide = new Splide('.run', {
+        type: 'loop',
+        drag: 'free',
+        focus: 'center',
+        perPage: 3,
+        autoScroll: true, // Enable auto-scroll
+        interval: 1000,   // Set the auto-scroll interval in milliseconds (e.g., 3000 for 3 seconds)
+      });
+
+      splide.mount();
+    });
+    document.addEventListener('DOMContentLoaded', function () {
       const splide = new Splide('#relatedSlider', {
         type: "loop",
         pagination: false,
@@ -510,6 +530,7 @@ height: auto;
       });
       splide.mount();
     });
+
     $('#Buynow').on('click', function () {
       console.log("Buynow clicked")
 
@@ -522,6 +543,19 @@ height: auto;
       }, 800)
 
     })
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
   </script>
 
 
