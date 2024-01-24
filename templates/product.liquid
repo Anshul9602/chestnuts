@@ -130,6 +130,17 @@ height: auto;
 .run .splide__arrows{
 display: none;
 }
+.dataprice::-webkit-scrollbar {
+    width: 0.5em !important;
+}
+.dataprice::-webkit-scrollbar-thumb {
+    background-color: transparent !important;
+}
+
+/* Optional: You can also hide the track if you want */
+.dataprice::-webkit-scrollbar-track {
+    background-color: transparent !important;
+}
 {% endstyle %}
 
 {% assign sectionId = section.id %}
@@ -150,13 +161,13 @@ display: none;
 
     <!-- Main Carousel -->
 
-    <div class="product_imgs col-md-7 row m-0 pl-md-5 pr-md-5 p-0 " style="    justify-content: space-around;     height: 100vh;   ">
-      <section id="main-carousel" class="splide" style="height: 70%;">
+    <div class="product_imgs col-md-7 row m-0 pl-md-5 pr-md-5 p-0 " style="    justify-content: space-around;     height: 80vh;   ">
+      <section id="main-carousel" class="splide" style="height: fit-content;">
         <div class="splide__track">
           <ul class="splide__list">
             {% for image in product.images %}
             <li class="splide__slide" style="justify-content: center;display:flex;"><img
-                src="{{ image.src | img_url: '400x400' }}" alt="" style="max-width: 400px;"></li>
+                src="{{ image.src | img_url: '400x400' }}" alt="" style="max-width: 350px;"></li>
             {% endfor %}
           </ul>
         </div>
@@ -176,7 +187,7 @@ display: none;
         </div>
       </section>
     </div>
-    <div class="dataprice col-md-5">
+    <div class="dataprice col-md-5" style="height: 80vh;    overflow-y: scroll;">
       <div class="product_info " style="min-width:270px;">
         <div class="flex flex-col gap-y-3">
           <div class="product-title">

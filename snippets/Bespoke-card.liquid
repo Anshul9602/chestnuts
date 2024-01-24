@@ -65,12 +65,9 @@
 {% endstyle %}
 
 <div class="bespoke-card position-relative">
-  <a href="{{ product.url }}">
+  <a href="{{ product.url }}" style="width: 100%;">
     <div class="img-fluid">
-      <img
-        class="img-responsive"
-        alt="{{ product.featured_image.alt }}"
-        src="{{ product.featured_image | img_url: '800x800' }}">
+      <div class="imfd" style="height: 300px;width:100%;background-image: url({{ product.featured_image | img_url: '400x400' }});    border-radius: 25px;"></div>
     </div>
 
    <div class="slide-content-without-city" style="text-align:left;">

@@ -157,8 +157,8 @@ margin-left: 10px !important;
       </table>
       <hr>
       <div class="row " data-wow-delay="0.4s"
-        style=" justify-content: space-around;display:flex;margin-top:20px;">
-        <div class="col-md-4 dataprice " >
+        style=" justify-content: end;display:flex;margin-top:20px;">
+        <div class="col-md-4 dataprice d-none" >
           <strong class="title pb-4">Coupon</strong>
           <form action="#" class="form mt-4">
             <fieldset style="    display: flex;margin-top:10px;">
@@ -175,15 +175,17 @@ margin-left: 10px !important;
           <div class="total-amunt">
             <div class="holder">
               <strong class="heading">Subtotal :</strong>
-              <span class="price">{{ cart.total_price | money }}</span>
+              <span class="price text-end">{{ cart.total_price | money }}</span>
             </div>
+            {% if cart.total_tax %}
             <div class="holder">
               <strong class="heading">Tax :</strong>
-              <span class="price">Rs. 44.91</span>
+              <span class="price text-end">{{ cart.total_tax | money }}</span>
             </div>
+            {% endif %}
             <div class="holder">
               <strong class="heading">total :</strong>
-              <span class="price">{{ cart.total_price |plus : 4491 | money}} </span>
+              <span class="price text-end">{{ cart.total_price |plus : 4491 | money}} </span>
             </div>
 
           </div>
