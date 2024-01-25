@@ -251,7 +251,7 @@ display: none;
               </div>
             </div>
             <div class="row">
-              <div class="addToCart-btn col-md-5 items-start mt-3">
+              <div class="addToCart-btn col-md-8 items-start mt-3">
                 <div class="add-cart ">
                   <button type="submit" id="AddToCart" name="add"
                     class="border w-full  py-3 rounded-[4px] bg-primary  transition-all text-white tracking-[3px] font-semibold uppercase font-Mukta"
@@ -262,13 +262,13 @@ display: none;
                 </div>
 
               </div>
-              <div class="col-md-5 mt-3">
+              {% comment %} <div class="col-md-5 mt-3">
                 <a id="Buynow"
                   class="border btn w-full  py-3 rounded-[4px]  transition-all  tracking-[3px] font-semibold uppercase font-Mukta"
                   style="border-radius: 10px;color:#894e3f;border:1px solid #894e3f;padding:16px 0;width:100%;">
                   Buy Now
                 </a>
-              </div>
+              </div> {% endcomment %}
             </div>
 
         </div>
@@ -543,18 +543,18 @@ display: none;
       splide.mount();
     });
 
-    $('#Buynow').on('click', function () {
-      console.log("Buynow clicked")
+    // $('#Buynow').on('click', function () {
+    //   console.log("Buynow clicked")
 
-      $("#AddToCart").click();
+    //   $("#AddToCart").click();
 
-      setTimeout(function () {
+    //   setTimeout(function () {
 
-        window.location = "/cart";
+    //     window.location = "/cart";
 
-      }, 800)
+    //   }, 800)
 
-    })
+    // })
     function openCity(evt, cityName) {
       var i, tabcontent, tablinks;
       tabcontent = document.getElementsByClassName("tabcontent");
