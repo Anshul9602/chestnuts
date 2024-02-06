@@ -1,7 +1,9 @@
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"> </script>
 <script
   src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js"> </script>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet" />
 
 {% style %}
@@ -189,9 +191,9 @@ display: none;
     </div>
     <div class="dataprice col-md-5" style="height: 90vh;    overflow-y: scroll;">
       <div class="product_info " style="min-width:270px;">
-        <div class="flex flex-col gap-y-3">
+        <div class="flex flex-col ">
           <div class="product-title">
-            <h1 class="text-[30px] font-Mukta font-semibold">{{ product.title }}</h1>
+            <h3 class="text-[30px] font-Mukta " style="font-family: 'Noto Serif', serif;font-weight: 600;    text-transform: capitalize;">{{ product.title }}</h3>
             <span id="" class="rc">
               <a href="#reviews">
                 <div
@@ -309,7 +311,11 @@ display: none;
           .tab button.active {
             border-bottom: 3px solid #894e3f;
           }
-
+.tablinks{
+  font-family: 'Noto Serif', serif;
+    font-weight: 800;
+    color: #4f4f4f;
+}
           /* Style the tab content */
           .tabcontent {
             display: none;
@@ -447,7 +453,7 @@ display: none;
     <div class="row">
       <div class="col-12 text-center">
         <div class="product-title">
-          <h1 class="text-[30px] font-Mukta font-semibold">You May Also Like</h1>
+          <h3 class="text-[30px] font-Mukta font-semibold" style="font-family: 'Noto Serif', serif;font-weight: 600;text-transform: capitalize;">You May Also Like</h3>
           <hr>
         </div>
         </br></br>
