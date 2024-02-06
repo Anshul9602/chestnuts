@@ -95,7 +95,7 @@ justify-content: center;
 
 }
 }
-td, th {
+thead th {
 border: 1px solid #dddddd;
 text-align: left;
 padding: 8px;
@@ -185,7 +185,7 @@ margin-left: 10px !important;
             {% endif %}
             <div class="holder">
               <strong class="heading">total :</strong>
-              <span class="price text-end">{{ cart.total_price |plus : 4491 | money}} </span>
+              <span class="price text-end">{{ cart.total_price | money}} </span>
             </div>
 
           </div>

@@ -194,28 +194,25 @@
               {% for product in collection.products %}
               <div class="product-block block col-md-3 position-relative" data-price="{{ product.price }}"
                 data-index="{{ forloop.index }}">
-                <a href="{{ product.url }}" class="banner-shadow block w-full rounded-md">
+                <a href="{{ product.url }}" class="banner-shadow block w-full rounded-md" style=" border: 1px solid #cbd5e1;">
                   <div class="flex flex-col">
                     <div class="imfd d-none" style="height: 300px;width:300px;background-image: url({{ product.featured_image | img_url: '400x400' }});    border-radius: 25px;    background-position: center;"></div>
                     <img src="{{ product.featured_image | img_url: '400x400' }}" alt="" width="100%">
-                    <div class="bg-white py-1  flex flex-row justify-between items-center rounded-b-md">
+                    <div class="bg-white flex flex-row justify-between items-center rounded-b-md " style="padding: 10px 15px;">
                       <div class="flex flex-col">
                         <div class="slide-content-without-city" style="text-align:left;">
-                          <div class="truncate" style="color:#666;text-transform: capitalize;">{{ product.title }}</div>
+                          <div class="truncate" style="color:#666;text-transform: capitalize;min-height:48px;">{{ product.title }}</div>
                           <div class="price"
                             style=" text-align:left;font-size:18px; color:#333;/*color:#ec018c;/*color:#222;*/">
                             <span style="font-size:15px;" class="moneySymbol">₹</span> <span data-inr="849"
                               class="moneyCal">{{ product.price | money }}</span>
                             <span style="text-decoration:line-through; font-size:16px; padding-left: 3px; color:#878787;">
                           </div>
-                          <div style="font-size:13px;color:#888; min-height:19.5px;">
-                            Earliest Delivery:
-                            <span style="color: #66b266; font-weight: 700;">Today</span>
-                          </div>
+                         
                           <div style="display:inline-block;color:#e7711b;font-size:14px;  padding-top:15px; ">5.0</div>
                           <div style="display:inline-block;"><span class="stars" style="font-size: 18px"
-                              data-rating="5.0"><span class="stars-container stars-100">★★★★★</span></span>
-                            <span style="color: #888; font-size:13px;"> 4 Reviews </span>
+                              data-rating="5.0"><span class="stars-container stars-100">★ ( 8 )</span></span>
+                              <span style="color: #66b266; font-weight: 700;font-size:small;">Today</span>
                           </div>
                         </div>
                       </div>
