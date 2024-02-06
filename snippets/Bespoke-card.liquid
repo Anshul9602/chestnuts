@@ -3,6 +3,8 @@
     display: flex;
     flex-direction: column;
     align-items: start;
+    border: 1px solid #cbd5e1;
+    border-radius: 25px;
   }
 
   .bespoke-card .img {
@@ -70,21 +72,18 @@
       <div class="imfd" style="height: 300px;width:100%;background-image: url({{ product.featured_image | img_url: '400x400' }});    border-radius: 25px;"></div>
     </div>
 
-   <div class="slide-content-without-city" style="text-align:left;">
-   <div class="truncate" style="color:#666;text-transform: capitalize;">{{ product.title }}</div>
+   <div class="slide-content-without-city" style="text-align:left;color: #4f4f4f;padding:10px 20px;">
+   <div class="truncate" style="color:#666;text-transform: capitalize;min-height:48px;">{{ product.title }}</div>
    <div class="price" style=" text-align:left;font-size:18px; color:#333;/*color:#ec018c;/*color:#222;*/">
       <span style="font-size:15px;" class="moneySymbol">₹</span> <span data-inr="849" class="moneyCal">{{ product.price | money }}</span>
       <span style="text-decoration:line-through; font-size:16px; padding-left: 3px; color:#878787;">
       
      
    </div>
-   <div style="font-size:13px;color:#888; min-height:19.5px;">
-      Earliest Delivery:
-      <span style="color: #66b266; font-weight: 700;">Today</span>
-   </div>
+  
    <div style="display:inline-block;color:#e7711b;font-size:14px;  padding-top:15px; ">5.0</div>
-   <div style="display:inline-block;"><span class="stars" style="font-size: 18px" data-rating="5.0"><span class="stars-container stars-100">★★★★★</span></span> 
-      <span style="color: #888; font-size:13px;"> 4 Reviews </span>
+   <div style="display:inline-block;"><span class="stars" style="font-size: 18px" data-rating="5.0"><span class="stars-container stars-100">★(8)</span></span> <span style="color: #66b266;    font-size: smaller; font-weight: 700;">Today</span>
+     
    </div>
 </div>
   </a>
