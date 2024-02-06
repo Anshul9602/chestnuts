@@ -553,7 +553,12 @@ display: none;
         autoScroll: {
           speed: 1,
         },
+        breakpoints: {
+          600: {
 
+            perPage: 3, // Display 3 thumbnails per page on smaller screens
+          },
+        },
         focus: "center",
       }).mount(window.splide.Extensions);
     });
@@ -575,7 +580,7 @@ display: none;
             perPage: 3
           },
           552: {
-            perPage: 2
+            perPage: 1
           }
         }
       });

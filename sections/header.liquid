@@ -273,7 +273,7 @@ padding-left: 1rem!important;
                 style="justify-content: space-around;">
 
 
-                <a class="nav-shortlist flex items-center justify-center relative cursor-pointer overflow-hidden"
+                <a href="{{ routes.wishlist_url }}" class="nav-shortlist flex items-center justify-center relative cursor-pointer overflow-hidden"
                   title="Shortlist">
                   <div class="icon-wrapper">
                     <img src="https://cdn.igp.com/raw/upload/assets/svg-icons/heart-2.svg" alt="heart" class="w-full">
@@ -282,10 +282,12 @@ padding-left: 1rem!important;
 
                 <a href="{{ routes.cart_url }}"
                   class="nav-cart flex items-center justify-center relative cursor-pointer overflow-hidden"
-                  title="Cart">
-                  <div class="icon-wrapper">
+                  title="Cart" style="padding: 15px;">
+                  <div class="icon-wrapper" style="position: relative;">
                     <img src="https://cdn.igp.com/raw/upload/assets/svg-icons/Cart-big.svg" alt="heart" class="w-full">
                   </div>
+                  <span class="cart-item-count" style="    position: absolute;top: 4px;margin: auto;
+                  color: #fff;font-size: 14px;">{{ cart.item_count }}</span>
                 </a>
 
                 <a href="{{ routes.account_url }}"
