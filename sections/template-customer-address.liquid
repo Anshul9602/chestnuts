@@ -148,31 +148,31 @@
         </div>
       {% endform %}
     </div>
-
+<div style="height: 1px;background:black; width:100%;"></div>
     <div class="addressesContainer w-full">
-      <div class="flex flex-row gap-5 flex-wrap">
+      <div class="flex flex-row  flex-wrap" style="justify-content: center;display:flex;">
         {% paginate customer.addresses by 5 %}
           {% for address in customer.addresses %}
-            <div>
-              <div class="relative shadow-md px-10 p-5 flex flex-col gap-5 rounded-md border border-[#c1c1c1] basis-[300px]">
+            <div style="max-width: 23%;width:100%;padding:1%;">
+              <div class="relative shadow-md px-10 p-3 flex flex-col rounded-md border border-[#c1c1c1] basis-[300px]">
                 {% if address == customer.default_address %}
-                  <span class="text-[12px] text-primary">Default</span>
+                  <h1 class="text-[12px] text-black text-center">Default</h1>
                 {% endif %}
-                <div class="">
+                <div class="text-center">
                   {{ address | format_address }}
                 </div>
 
-                <div class="flex flex-row items-center gap-2">
-                  <button type="button" class="editAddButton border px-3 py-2 border-primary rounded-sm bg-primary text-white hover:bg-white hover:text-primary transition-all font-Mukta">Edit</button>
+                <div class="flex flex-row items-center"style="justify-content: space-around;">
+                  <button type="button" class="editAddButton border px-3 py-2  rounded-sm bg-primary text-white hover:bg-white hover:text-primary transition-all font-Mukta" style="max-width: 45%;width:100%;">Edit</button>
                   <form
                     class="address-delete-form"
                     method="post"
-                    action="/account/addresses/{{ address.id }}">
+                    action="/account/addresses/{{ address.id }}"style="max-width: 45%;width:100%;">
                     <input
                       type="hidden"
                       name="_method"
                       value="delete">
-                    <button type="submit" class="resetAddressBtn border px-3 py-2 border-[#c1c1c1] rounded-sm hover:border-primary hover:text-primary transition-all font-Mukta">Delete</button>
+                    <button type="submit" class="resetAddressBtn border px-3 py-2 border-[#c1c1c1] rounded-sm hover:border-primary hover:text-primary transition-all font-Mukta" style="width: 100%;">Delete</button>
                   </form>
 
                 </div>

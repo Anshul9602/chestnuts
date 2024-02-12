@@ -641,10 +641,14 @@ video {
   display: table;
 }
 
+.grid {
+  display: grid;
+}
 
 .hidden {
   display: none;
 }
+
 
 .h-\[100px\] {
   height: 100px;
