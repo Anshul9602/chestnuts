@@ -133,15 +133,15 @@ height: auto;
 display: none;
 }
 .dataprice::-webkit-scrollbar {
-    width: 0.5em !important;
+width: 0.5em !important;
 }
 .dataprice::-webkit-scrollbar-thumb {
-    background-color: transparent !important;
+background-color: transparent !important;
 }
 
 /* Optional: You can also hide the track if you want */
 .dataprice::-webkit-scrollbar-track {
-    background-color: transparent !important;
+background-color: transparent !important;
 }
 {% endstyle %}
 
@@ -163,7 +163,8 @@ display: none;
 
     <!-- Main Carousel -->
 
-    <div class="product_imgs col-md-7 row m-0 pl-md-5 pr-md-5 p-0 " style="    justify-content: space-around;     height: auto;   ">
+    <div class="product_imgs col-md-7 row m-0 pl-md-5 pr-md-5 p-0 "
+      style="    justify-content: space-around;     height: auto;   ">
       <section id="main-carousel" class="splide" style="height: fit-content;">
         <div class="splide__track">
           <ul class="splide__list">
@@ -193,7 +194,9 @@ display: none;
       <div class="product_info " style="min-width:270px;">
         <div class="flex flex-col ">
           <div class="product-title">
-            <h3 class="text-[30px] font-Mukta " style="font-family: 'Noto Serif', serif;font-weight: 600;    text-transform: capitalize;">{{ product.title }}</h3>
+            <h3 class="text-[30px] font-Mukta "
+              style="font-family: 'Noto Serif', serif;font-weight: 600;    text-transform: capitalize;">{{ product.title
+              }}</h3>
             <span id="" class="rc">
               <a href="#reviews">
                 <div
@@ -206,48 +209,49 @@ display: none;
           </div>
           <hr>
           <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
-          <div class="product-prices flex flex-row items-center gap-x-4 mt-3">
-            <span class="product_price font-Mukta text-[23px] font-bold"
-              style="font-size: 18px; opacity: 1; position: relative;" id="currentPrice">
-              {{ product.selected_or_first_available_variant.price | money }}
-            </span>
-            <span class="product_compare_price text-gray-500 font-Mukta line-through {% if product.selected_or_first_available_variant.price == product.selected_or_first_available_variant.compare_at_price %}hidden{% endif %}"
-              id="comparePrice">
-              {{ product.selected_or_first_available_variant.compare_at_price | money }}
-            </span>
-            <span class="sale-tag {% if product.selected_or_first_available_variant.compare_at_price %}not-hidden{% else %}hidden{% endif %}"
-              id="saleTag">
-              {% if product.selected_or_first_available_variant.compare_at_price %}
-              <span class='relative text-white flex flex-row'>
-                <span class="sale_percent bg-primary py-[2px] px-[10px] text-[12px] ml-[-6px] font-Mukta"
-                  style="padding:5px;">
-                  {{ product.selected_or_first_available_variant.compare_at_price | minus:
-                  product.selected_or_first_available_variant.price | times: 100 | divided_by:
-                  product.selected_or_first_available_variant.compare_at_price }}%
-                  OFF
-                </span>
+            <div class="product-prices flex flex-row items-center gap-x-4 mt-3">
+              <span class="product_price font-Mukta text-[23px] font-bold"
+                style="font-size: 18px; opacity: 1; position: relative;" id="currentPrice">
+                {{ product.selected_or_first_available_variant.price | money }}
               </span>
+              <span
+                class="product_compare_price text-gray-500 font-Mukta line-through {% if product.selected_or_first_available_variant.price == product.selected_or_first_available_variant.compare_at_price %}hidden{% endif %}"
+                id="comparePrice">
+                {{ product.selected_or_first_available_variant.compare_at_price | money }}
+              </span>
+              <span
+                class="sale-tag {% if product.selected_or_first_available_variant.compare_at_price %}not-hidden{% else %}hidden{% endif %}"
+                id="saleTag">
+                {% if product.selected_or_first_available_variant.compare_at_price %}
+                <span class='relative text-white flex flex-row'>
+                  <span class="sale_percent bg-primary py-[2px] px-[10px] text-[12px] ml-[-6px] font-Mukta"
+                    style="padding:5px;">
+                    {{ product.selected_or_first_available_variant.compare_at_price | minus:
+                    product.selected_or_first_available_variant.price | times: 100 | divided_by:
+                    product.selected_or_first_available_variant.compare_at_price }}%
+                    OFF
+                  </span>
+                </span>
+                {% endif %}
+              </span>
+            </div>
+
+            <select name="id" id="productSelect" class="mt-3"
+              style="margin-top:10px;margin-bottom:10px;width: 50%;border: 2px solid;padding: 10px;border-radius: 10px;"
+              onchange="updateProductPrices()">
+              {% for variant in product.variants %}
+              {% if variant.available %}
+              <option value="{{ variant.id }}" data-price="{{ variant.price | money_with_currency }}"
+                data-compare-price="{{ variant.compare_at_price }}">
+                {{ variant.title }} - {{ variant.price | money_with_currency }}
+              </option>
+              {% else %}
+              <option disabled="disabled">
+                {{ variant.title }} - sold out
+              </option>
               {% endif %}
-            </span>
-          </div>
-          
-          <select name="id" id="productSelect" class="mt-3"
-            style="margin-top:10px;margin-bottom:10px;width: 50%;border: 2px solid;padding: 10px;border-radius: 10px;"
-            onchange="updateProductPrices()">
-            {% for variant in product.variants %}
-            {% if variant.available %}
-            <option value="{{ variant.id }}"
-              data-price="{{ variant.price | money_with_currency }}"
-              data-compare-price="{{ variant.compare_at_price }}">
-              {{ variant.title }} - {{ variant.price | money_with_currency }}
-            </option>
-            {% else %}
-            <option disabled="disabled">
-              {{ variant.title }} - sold out
-            </option>
-            {% endif %}
-            {% endfor %}
-          </select>
+              {% endfor %}
+            </select>
 
 
             <div class="product-quantity flex flex-col gap-y-1 mb-1" style="margin-top:20px;margin-bottom:20px;">
@@ -311,11 +315,13 @@ display: none;
           .tab button.active {
             border-bottom: 3px solid #894e3f;
           }
-.tablinks{
-  font-family: 'Noto Serif', serif;
-    font-weight: 800;
-    color: #4f4f4f;
-}
+
+          .tablinks {
+            font-family: inherit;
+            font-weight: 500;
+            color: #4f4f4f;
+          }
+
           /* Style the tab content */
           .tabcontent {
             display: none;
@@ -334,10 +340,8 @@ display: none;
               <button class="tablinks" onclick="openCity(event, 'Tokyo')">More Info</button>
             </div>
 
-
             <div id="London" class="tabcontent" style="display:block;">
               <p class="font-Mukta mt-4">{{ product.description }}</p>
-
             </div>
 
             <div id="Paris" class="tabcontent">
@@ -453,7 +457,8 @@ display: none;
     <div class="row">
       <div class="col-12 text-center">
         <div class="product-title">
-          <h3 class="text-[30px] font-Mukta font-semibold" style="font-family: 'Noto Serif', serif;font-weight: 600;text-transform: capitalize;">You May Also Like</h3>
+          <h3 class="text-[30px] font-Mukta font-semibold"
+            style="font-family: 'Noto Serif', serif;font-weight: 600;text-transform: capitalize;">You May Also Like</h3>
           <hr>
         </div>
         </br></br>
@@ -489,34 +494,34 @@ display: none;
 
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script>
-  function updateProductPrices() {
-    var selectElement = document.getElementById('productSelect');
-    var currentPriceElement = document.getElementById('currentPrice');
-    var comparePriceElement = document.getElementById('comparePrice');
-    var saleTagElement = document.getElementById('saleTag');
+  <script>
+    function updateProductPrices() {
+      var selectElement = document.getElementById('productSelect');
+      var currentPriceElement = document.getElementById('currentPrice');
+      var comparePriceElement = document.getElementById('comparePrice');
+      var saleTagElement = document.getElementById('saleTag');
 
-    var selectedOption = selectElement.options[selectElement.selectedIndex];
-    var selectedPrice = selectedOption.getAttribute('data-price');
-    var selectedComparePrice = selectedOption.getAttribute('data-compare-price');
+      var selectedOption = selectElement.options[selectElement.selectedIndex];
+      var selectedPrice = selectedOption.getAttribute('data-price');
+      var selectedComparePrice = selectedOption.getAttribute('data-compare-price');
 
-    // Update current price
-    if (currentPriceElement) {
-      console.log(selectedPrice);
-      currentPriceElement.textContent = selectedPrice;
+      // Update current price
+      if (currentPriceElement) {
+        console.log(selectedPrice);
+        currentPriceElement.textContent = selectedPrice;
+      }
+
+      // Update compare price
+      if (comparePriceElement) {
+        comparePriceElement.textContent = selectedComparePrice;
+      }
+
+      // Update sale tag visibility
+      if (saleTagElement) {
+        saleTagElement.classList.toggle('not-hidden', selectedComparePrice !== null);
+      }
     }
-
-    // Update compare price
-    if (comparePriceElement) {
-      comparePriceElement.textContent = selectedComparePrice;
-    }
-
-    // Update sale tag visibility
-    if (saleTagElement) {
-      saleTagElement.classList.toggle('not-hidden', selectedComparePrice !== null);
-    }
-  }
-</script>
+  </script>
   <script>
 
     document.addEventListener('DOMContentLoaded', function () {
