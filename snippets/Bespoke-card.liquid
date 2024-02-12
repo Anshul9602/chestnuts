@@ -1,5 +1,6 @@
 {% style %}
   .bespoke-card {
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -8,7 +9,7 @@
   }
 
   .bespoke-card .img {
-    width: 252px;
+    width: 252px; 
   }
 
   .titleWLike {
@@ -69,7 +70,8 @@
 <div class="bespoke-card position-relative">
   <a href="{{ product.url }}" style="width: 100%;">
     <div class="img-fluid">
-      <div class="imfd" style="height: 300px;width:100%;background-image: url({{ product.featured_image | img_url: '400x400' }});    border-radius: 25px;"></div>
+      <div class="imfd d-none" style="height: 300px;width:100%;background-image: url({{ product.featured_image | img_url: '400x400' }});    border-radius: 25px;"></div>
+      <img src="{{ product.featured_image | img_url: '400x400' }}" alt="" style="width: 100%;">
     </div>
 
    <div class="slide-content-without-city" style="text-align:left;color: #4f4f4f;padding:10px 15px;">
