@@ -641,9 +641,6 @@ video {
   display: table;
 }
 
-.grid {
-  display: grid;
-}
 
 .hidden {
   display: none;
@@ -1351,7 +1348,9 @@ video {
     padding-right: 1.25rem;
   }
 
-  
+  .bg-wrapper {
+  background: #f2f2f2;
+}
 
   .md\:text-\[18px\] {
     font-size: 18px;
