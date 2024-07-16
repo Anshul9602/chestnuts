@@ -304,10 +304,10 @@ padding-left: 1rem!important;
                   <i class='bx bx-menu' style="color:#894e3f;"></i>
                 </div>
               </div>
-              <div class="desk_menu col-md-12" style="padding:7px 0px;">
-                <div class="px-2  flex flex-row flex-wrap  " style="justify-content: center;">
+              <div class="desk_menu col-md-8 m-auto" style="padding:7px 0px;">
+                <div class="px-2  flex flex-row flex-wrap  " style="justify-content: space-around;">
                   {% for link in linklists.main-menu.links -%}
-                  <div class="flex flex-col gap-3 " style="    padding: 0 20px;">
+                  <div class="flex flex-col gap-3 ">
                     <div
                       class="gcMenu-mainLink  py-1 px-2 rounded-md cursor-pointer flex items-center justify-between hover:text-primary text-white1">
                       <a href="{{ link.url }}" class="tracking-widest">{{ link.title }}</a>
