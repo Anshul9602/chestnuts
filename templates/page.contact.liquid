@@ -1,14 +1,98 @@
-<h1>{{ page.title }}</h1>
-{% form 'contact' %}
-  {% if form.posted_successfully? %} Thank you for your contact {% endif %}
-  {{ form.errors | default_errors }}
-  <label for="ContactFormName">name</label>
-  <input type="text" id="ContactFormName" name="contact[name]">
-  <label for="ContactFormEmail">email</label>
-  <input type="email" id="ContactFormEmail" name="contact[email]">
-  <label for="ContactFormPhone">phone</label>
-  <input type="tel" id="ContactFormPhone" name="contact[phone]">
-  <label for="ContactFormMessage">message</label>
-  <textarea rows="10" id="ContactFormMessage" name="contact[body]"></textarea>
-  <input type="submit" value="send">
-{% endform %}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  .input {
+    border: 1px solid black;
+  }
+  .desk.hidden{
+    display: block;
+  }
+  .bg-primary {
+    --tw-bg-opacity: 1;
+    background-color: rgb(137 78 63 / var(--tw-bg-opacity)) !important;
+    border: none !important;
+}
+</style>
+
+
+<section style="">
+  <div class="container pb-4">
+    <div class="mainnn mt-5 ">
+      <h1 class="text-center">{{ page.title }}</h1>
+      <hr>
+    </div>
+    <div class="content mt-5">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="get small-11 medium-4" style="padding-bottom:20px;">
+            <div class="maintext">
+                <h6>Get in touch</h6>
+                <p>call or email us with your questions.</p>
+    
+            </div>
+            <div class="phone row mt-3" style="padding-top:10px;">
+                <div class="icon col-2"><i class="fa fa-phone" aria-hidden="true"></i> / <i class="fa fa-whatsapp" aria-hidden="true"></i></div>
+                <div class="text col-10">+91-6386984038 </div>
+            </div>
+            <div class="email row mt-3" style="padding-top:10px;">
+                <div class="icon col-2"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+                <div class="text col-10">parthkeshari991@gmail.com</div>
+            </div>
+            <div class="email row mt-3" style="padding-top:10px;">
+                <div class="icon col-2"><i class="bx bx-location-plus" aria-hidden="true"></i></div>
+                <div class="text col-10">Varanasi, Uttar Pradesh , India</div>
+            </div>
+            
+            
+        </div>
+        
+        </div>
+        <div class="col-md-8">
+          <form method="post" action="/contact#contact_form" id="contact_form" accept-charset="UTF-8"
+            class="contact-form">
+            <input type="hidden" name="form_type" value="contact">
+            <input type="hidden" name="utf8" value="✓">
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="ContactFormName">Name</label>
+                <input type="text" class="form-control" id="ContactFormName" name="contact[name]"
+                  placeholder="Your Name">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="ContactFormEmail">Email</label>
+                <input type="email" class="form-control" id="ContactFormEmail" name="contact[email]"
+                  placeholder="Your Email">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="ContactFormPhone">Phone</label>
+                <input type="tel" class="form-control" id="ContactFormPhone" name="contact[phone]"
+                  placeholder="Your Phone">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="ContactFormPhone">Subject</label>
+                <input type="text" class="form-control" id="ContactFormSubject" name="contact[subject]"
+                  placeholder="Your subject">
+              </div>
+              <div class="form-group col-md-12">
+                <label for="ContactFormMessage">Message</label>
+                <textarea rows="4" class="form-control" id="ContactFormMessage" name="contact[body]"
+                  placeholder="Your Message"></textarea>
+              </div>
+              <div class="form-group col-md-12 text-center">
+                <button type="submit" class="btn btn-primary bg-primary text-white">Send</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+</section>
+
+
