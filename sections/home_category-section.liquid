@@ -1,111 +1,100 @@
-`<div class="category-section px-5 py-16 ">
-  <div class="">
-    <div
-      class="splide"
-      id="categorySlider"
-      role="group"
-      aria-label="Splide Basic HTML Example">
-      <div class="splide__track">
-        <ul class="splide__list " style="display:flex;     justify-content: center;">
-          <li class="splide__slide">
-            <a href="collections/cakes" class="flex flex-col items-center gap-2">
-              <img
-                src="https://cdn.shopify.com/s/files/1/0721/4887/7629/t/4/assets/Cat-cake.png?v=1678363073"
-                alt="Cakes"
-                class="w-[130px] h-[130px]">
-              <span class="uppercase text-xs">Cakes</span>
-            </a>
-          </li>
-          {% comment %} <li class="splide__slide">
-            <a href="collections/flowers" class="flex flex-col items-center gap-2">
-              <img
-                src="https://cdn.shopify.com/s/files/1/0721/4887/7629/t/4/assets/Cat-flower.png?v=1678363183"
-                alt="Flowers"
-                class="w-[130px] h-[130px]">
-              <span class="uppercase text-xs">Flowers</span>
-            </a>
-          </li> {% endcomment %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<style>
+  .collection-v38__item-link {
+    position: absolute;
+    left:10% ;
+    right: 10px;
+    width: 80%;
+    height: 100%;
+    top:20%;
 
-          <li class="splide__slide">
-            <a href="collections/cookies" class="flex flex-col items-center gap-2">
-              <img
-                src="https://cdn.shopify.com/s/files/1/0721/4887/7629/t/4/assets/Cat-cookies.png?v=1678363147"
-                alt="Personalized Gifts"
-                class="w-[130px] h-[130px]">
-              <span class="uppercase text-xs">Cookies</span>
-            </a>
-          </li>
 
-          {% comment %} <li class="splide__slide">
-            <a href="collections/chocolates" class="flex flex-col items-center gap-2">
-              <img
-                src="https://cdn.shopify.com/s/files/1/0721/4887/7629/t/4/assets/Cat-chocolate.png?v=1678363122"
-                alt="Chocolates"
-                class="w-[130px] h-[130px]">
-              <span class="uppercase text-xs">Chocolates</span>
-            </a>
-          </li> {% endcomment %}
+    /* Adjust background color as needed */
+    opacity: 0;
+    transition: opacity 3.5s, transform 2.2s, background-color 2.5s, color 0.5s, width 1.5s;
+  }
 
-          <li class="splide__slide">
-            <a href="collections/occasions" class="flex flex-col items-center gap-2">
-              <img
-                src="https://cdn.shopify.com/s/files/1/0721/4887/7629/t/4/assets/Cat-occasion.png?v=1678363247"
-                alt="Combos"
-                class="w-[130px] h-[130px]">
-              <span class="uppercase text-xs">Breads</span>
-            </a>
-          </li>
+  .collection-v38__box:hover .collection-v38__item-link {
+    opacity: 1;
+    display: flex;
+    top:0%;
+  }
 
-          {% comment %} <li class="splide__slide">
-            <a href="collections/desserts" class="flex flex-col items-center gap-2">
-              <img
-                src="https://cdn.shopify.com/s/files/1/0721/4887/7629/t/4/assets/Cat-gift.png?v=1678363219"
-                alt="Gifts"
-                class="w-[130px] h-[130px]">
-              <span class="uppercase text-xs">Desserts</span>
-            </a>
-          </li> {% endcomment %}
+  .collection-v38__title {
+    text-align: center;
+    margin: 10%;
+    color: black !important;
+  }
 
+  .collection-v38__img img {
+    width: 100%;
+  }
+</style>
+
+
+
+<div class="" style="max-width: 90%;margin:auto;">
+  <div class="row " style="    justify-content: space-around;">
+    <div class="col-md-3 mt-3">
+      <div class="collection-v38__box hover-style hover-style--hover1" style="position: relative;">
+        <a href="/collections/cake" class="collection-v38__img">
+          <div class="xo-image">
+            <img src="https://cdn.shopify.com/s/files/1/0607/1720/3525/files/SC_0054.png?v=1722583875" alt="Image Description">
+          </div>
+        </a>
+        <div class="collection-v38__item-link" style="align-items: center;">
           
-        </ul>
+          <div style="width: 100%; padding: 10%;background-color: rgba(255, 255, 255);">
+            <div style="border: .1rem solid black;">
+              <h1 class="collection-v38__title text-center">
+                <a href="/collections/cake" class="collection-v38__link" style="    text-decoration: auto;font-weight: 500;color:black;">Cake</a>
+              </h1>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mt-3">
+      <div class="collection-v38__box hover-style hover-style--hover1" style="position: relative;">
+        <a href="/collections/Cookies" class="collection-v38__img">
+          <div class="xo-image">
+            <img src="https://cdn.shopify.com/s/files/1/0607/1720/3525/files/SC_6049.png?v=1721974125" alt="Image Description">
+          </div>
+        </a>
+        <div class="collection-v38__item-link" style="align-items: center;">
+          
+          <div style="width: 100%; padding: 10%;background-color: rgba(255, 255, 255);">
+            <div style="border: .1rem solid black;">
+              <h1 class="collection-v38__title text-center">
+                <a href="/collections/Cookies" class="collection-v38__link" style="    text-decoration: auto;font-weight: 500;color:black;">Cookies</a>
+              </h1>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mt-3">
+      <div class="collection-v38__box hover-style hover-style--hover1" style="position: relative;">
+        <a href="/collections/brades" class="collection-v38__img">
+          <div class="xo-image">
+            <img src="https://cdn.shopify.com/s/files/1/0607/1720/3525/files/SC_0022.png?v=1722583656" alt="Image Description">
+          </div>
+        </a>
+        <div class="collection-v38__item-link" style="align-items: center;">
+          
+          <div style="width: 100%; padding: 10%;background-color: rgba(255, 255, 255);">
+            <div style="border: .1rem solid black;">
+              <h1 class="collection-v38__title text-center">
+                <a href="/collections/brades" class="collection-v38__link" style="    text-decoration: auto;font-weight: 500;color:black;">Breads</a>
+              </h1>
+            </div>
+          </div>
+          
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<script>
-  new Splide('#categorySlider', {
-    type: "slide",
-    pagination: true,
-    perPage: 6,
-    loop: true,
-    perMove: 1,
-    arrows: false,
-   
-    breakpoints: {
-      500: {
-        perPage: 2,
-        perMove: 1
-      },
-      640: {
-        perPage: 4,
-        perMove: 1
-      },
-      768: {
-        perPage: 5,
-        perMove: 1
-      },
-      1024: {
-        perPage: 7,
-        perMove: 1
-      },
-      1280: {
-        perPage: 6,
-        perMove: 1
-      }
-
-    },
-    autoplay: true, // Add this line to enable autoplay
-    interval: 2000,
-  }).mount();
-</script>
